@@ -1,38 +1,35 @@
 package controller;
 
+import java.util.List;
+
 import model.Card;
+import model.PawnsGame;
 import model.PawnsGameReadOnly;
 import model.PlayerColor;
 import strategies.Move;
 import strategies.Strategies;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MachinePlayer implements ActionPlayer {
   private final PlayerColor color;
-  private final List<Card> deck;
-  private final List<Card> hand;
   private final Strategies strategy;
-  private ViewActions observer;
 
-  public MachinePlayer(PlayerColor color, List<Card> deck, int handSize, Strategies strategy) {
+  public MachinePlayer(PlayerColor color, Strategies strategy) {
     this.color = color;
     this.strategy = strategy;
-    this.deck = new ArrayList<>(deck);
-    this.hand = new ArrayList<>();
-    for (int i = 0; i < handSize; i++) {
-      drawCard();
-    }
   }
-
-  public void setObserver(ViewActions observer) {
-    this.observer = observer;
-  }
-
 
   @Override
-  public void beginTurn(PawnsGameReadOnly model, ViewActions observer) {
+  public void beginTurn(PawnsGame model, ViewActions observer) {
+    // Only proceed if it's the machine player's turn
+    if (model.getCurrentPlayer() != color) {
+      System.out.println("It's not the machine player's turn.");
+      observer.onPassTurn();
+      return;
+    }
+
+    // Machine draws a card only on its turn
+    model.drawCard();  // Ensure the correct player draws a card on their turn.
+
     System.out.println("Machine player starting turn...");
     Move move = strategy.chooseMove(model);
 
@@ -42,6 +39,7 @@ public class MachinePlayer implements ActionPlayer {
       return;
     }
 
+    List<Card> hand = model.getCurrentPlayerHand();
     int index = -1;
     for (int i = 0; i < hand.size(); i++) {
       if (hand.get(i) == move.getCard()) {

@@ -1,10 +1,10 @@
 package controller;
 
-import model.PawnsGameReadOnly;
+import model.PawnsGame;
 
 public class HumanPlayer implements ActionPlayer{
   @Override
-  public void beginTurn(PawnsGameReadOnly model, ViewActions observer) {
+  public void beginTurn(PawnsGame model, ViewActions observer) {
 
   }
 }

@@ -32,7 +32,7 @@ public class HandPanel extends JPanel implements IHandPanel {
   private final List<Rectangle> cardBounds;
   private int cardWidth;
   private int handSize;
-  private final IPlayer player;
+  private final PlayerColor player;
 
   /**
    * Creates a panel for visualizing the hand of the given player.
@@ -40,7 +40,7 @@ public class HandPanel extends JPanel implements IHandPanel {
    * @param model  the PawnsBoard game to visualize.
    * @param player the player that is using this instance of the GUI.
    */
-  HandPanel(PawnsGameReadOnly model, IPlayer player) {
+  HandPanel(PawnsGameReadOnly model, PlayerColor player) {
     super();
 
     if (model == null || player == null) {
@@ -57,7 +57,11 @@ public class HandPanel extends JPanel implements IHandPanel {
    * Checks the number of cards in this player's hand to update handSize and cardWidth.
    */
   private void updateHand() {
-    handSize = this.player.getHand().size();
+    if(player == PlayerColor.RED){
+      handSize = this.model.getPlayerRed().getHand().size();
+    } else {
+      handSize = this.model.getPlayerBlue().getHand().size();
+    }
 
     if (handSize == 0) {
       cardWidth = 0;
@@ -103,7 +107,7 @@ public class HandPanel extends JPanel implements IHandPanel {
           } else {
             selectedCardIndex = index;
           }
-          observer.onCardSelected(index, player.getColor());
+          observer.onCardSelected(index, player);
           repaint();
           return;
         }
@@ -119,7 +123,7 @@ public class HandPanel extends JPanel implements IHandPanel {
     int width = this.getWidth();
     int height = this.getHeight();
 
-    if (this.player.getColor().equals(PlayerColor.RED)) {
+    if (this.player.equals(PlayerColor.RED)) {
       g2d.setColor(Color.decode("#fca6ae"));
     } else {
       g2d.setColor(Color.decode("#93bef3"));
@@ -147,7 +151,13 @@ public class HandPanel extends JPanel implements IHandPanel {
   private void drawHand(Graphics2D g2d) {
     cardBounds.clear(); // Clear previous frame’s boxes
 
-    List<Card> hand = player.getHand();
+    List<Card> hand;
+    if (player == PlayerColor.RED){
+      hand = this.model.getPlayerRed().getHand();
+    } else {
+      hand = this.model.getPlayerBlue().getHand();
+    }
+
     if (hand.isEmpty()){
       return;
     }

@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import controller.ViewActions;
 import model.IPlayer;
 import model.PawnsGameReadOnly;
+import model.PlayerColor;
 
 /**
  * A window of the PawnsBoard GUI.
@@ -23,7 +24,7 @@ public class PawnsFrame extends JFrame implements PawnsView {
    * @param model the game to visualize.
    * @param player the Player using this view.
    */
-  public PawnsFrame(PawnsGameReadOnly model, IPlayer player) {
+  public PawnsFrame(PawnsGameReadOnly model, PlayerColor player) {
     super();
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -31,7 +32,7 @@ public class PawnsFrame extends JFrame implements PawnsView {
       throw new IllegalArgumentException("parameters cannot be null");
     }
 
-    this.setTitle("Player: " + player.getColor());
+    this.setTitle("Player: " + player);
 
     setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 

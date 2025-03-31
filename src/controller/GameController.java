@@ -20,25 +20,31 @@ public class GameController implements PawnsController, ViewActions, ModelListen
   private int selectedRow;
   private int selectedCol;
 
-  public GameController(PawnsGame model, IPlayer player, PawnsView view, String type) {
+  public GameController(PawnsGame model, PlayerColor player, ActionPlayer Aplayer, PawnsView view) {
     if (model == null || player == null || view == null) {
       throw new IllegalArgumentException("Arguments to controller cannot be null");
     }
     this.model = model;
-    this.player = player;
+    if (player == PlayerColor.RED) {
+      this.player = this.model.getPlayerRed();
+    } else {
+      this.player = this.model.getPlayerBlue();
+    }
+
     this.view = view;
     this.isTurn = false;
     this.selectedCardIndex = -1;
     this.selectedRow = -1;
     this.selectedCol = -1;
+    this.Aplayer = Aplayer;
 
   }
 
   @Override
   public void playGame(PawnsGame model) {
-    model.addModelListener(this);  // Listen to turn/game status from the model
-    view.subscribe(this);          // Listen to user inputs from the view
-    view.makeVisible();            // Show the GUI
+    model.addModelListener(this);
+    view.subscribe(this);
+    view.makeVisible();
   }
 
   @Override
@@ -71,7 +77,6 @@ public class GameController implements PawnsController, ViewActions, ModelListen
     try {
       Card selectedCard = player.getHand().get(selectedCardIndex);
       model.placeCard(selectedRow, selectedCol, selectedCard);
-      model.drawCard();
       clearSelections();
       view.refresh();
     } catch (IllegalArgumentException | IllegalStateException e) {
@@ -87,10 +92,10 @@ public class GameController implements PawnsController, ViewActions, ModelListen
     }
 
     model.passTurn();
-    model.drawCard();
     clearSelections();
     view.refresh();
   }
+
 
   @Override
   public void onTurnChanged(PlayerColor currentPlayer) {
@@ -106,7 +111,7 @@ public class GameController implements PawnsController, ViewActions, ModelListen
     view.refresh();
 
     if (isTurn) {
-      player.beginTurn(model, this);
+      Aplayer.beginTurn(model, this);
     }
     System.out.println("Turn changed to: " + currentPlayer);
 

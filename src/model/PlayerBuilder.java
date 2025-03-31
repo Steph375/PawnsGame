@@ -1,6 +1,7 @@
 package model;
 
 import controller.ActionPlayer;
+import controller.HumanPlayer;
 import controller.MachinePlayer;
 import strategies.*;
 
@@ -12,7 +13,7 @@ import java.util.List;
  */
 public class PlayerBuilder {
 
-  public static ActionPlayer build(PlayerColor color, List<Card> deck, int handSize, String type) {
+  public static ActionPlayer build(PlayerColor color, String type) {
     if (type == null) {
       throw new IllegalArgumentException("Player type cannot be null.");
     }
@@ -20,7 +21,7 @@ public class PlayerBuilder {
     String lowered = type.toLowerCase().trim();
 
     if (lowered.equals("human")) {
-      return new Player(color, deck, handSize);
+      return new HumanPlayer();
     }
 
 
@@ -54,6 +55,6 @@ public class PlayerBuilder {
             ? strategies.get(0)
             : new MultipleStrategies(strategies);
 
-    return new MachinePlayer(color, deck, handSize, combined);
+    return new MachinePlayer(color, combined);
   }
 }
