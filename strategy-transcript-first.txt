@@ -1,0 +1,2 @@
+Checked for legal move with card Security at row 0 col 0
+Move was legal

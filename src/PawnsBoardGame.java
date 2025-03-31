@@ -1,0 +1,48 @@
+
+
+import controller.ActionPlayer;
+import controller.DeckReader;
+import controller.GameController;
+import controller.PawnsController;
+import model.*;
+import view.PawnsFrame;
+import view.PawnsView;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+public final class PawnsBoardGame {
+  public static void main(String[] args) {
+    if (args.length != 4) {
+      System.out.println("Usage: java -jar pawnsboard.jar <redDeckPath> <blueDeckPath> <redType> <blueType>");
+      System.exit(1);
+    }
+
+    String redDeckPath = args[0];
+    String blueDeckPath = args[1];
+    String redType = args[2];
+    String blueType = args[3];
+    int handSize = 5;
+
+    List<Card> redDeck = DeckReader.readDeck(new File(redDeckPath));
+    List<Card> blueDeck = DeckReader.readDeck(new File(blueDeckPath));
+
+    PawnsGame model = new PawnsGameModel(5, 7);
+    model.startGame(new ArrayList<>(redDeck), new ArrayList<>(blueDeck), handSize, false);
+
+    ActionPlayer redPlayer = PlayerBuilder.build(PlayerColor.RED, redDeck, handSize, redType);
+    ActionPlayer bluePlayer = PlayerBuilder.build(PlayerColor.BLUE, blueDeck, handSize, blueType);
+
+    PawnsView redView = new PawnsFrame(model, redPlayer);
+    PawnsView blueView = new PawnsFrame(model, bluePlayer);
+
+    PawnsController redController = new GameController(model, redPlayer, redView);
+    PawnsController blueController = new GameController(model, bluePlayer, blueView);
+
+    redController.playGame(model);
+    blueController.playGame(model);
+
+    model.notifyTurn();
+  }
+}

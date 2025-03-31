@@ -1,0 +1,99 @@
+getRowScores(0)
+Checked for legal move with card Security at row 0 col 0
+Move was legal
+Checked for legal move with card Security at row 0 col 1
+Move was not legal
+Checked for legal move with card Security at row 0 col 2
+Move was not legal
+Checked for legal move with card Security at row 0 col 3
+Move was not legal
+Checked for legal move with card Security at row 0 col 4
+Move was not legal
+getRowScores(1)
+Checked for legal move with card Security at row 1 col 0
+Move was legal
+Checked for legal move with card Security at row 1 col 1
+Move was not legal
+Checked for legal move with card Security at row 1 col 2
+Move was not legal
+Checked for legal move with card Security at row 1 col 3
+Move was not legal
+Checked for legal move with card Security at row 1 col 4
+Move was not legal
+getRowScores(2)
+Checked for legal move with card Security at row 2 col 0
+Move was legal
+Checked for legal move with card Security at row 2 col 1
+Move was not legal
+Checked for legal move with card Security at row 2 col 2
+Move was not legal
+Checked for legal move with card Security at row 2 col 3
+Move was not legal
+Checked for legal move with card Security at row 2 col 4
+Move was not legal
+getRowScores(0)
+Checked for legal move with card Bee at row 0 col 0
+Move was legal
+Checked for legal move with card Bee at row 0 col 1
+Move was not legal
+Checked for legal move with card Bee at row 0 col 2
+Move was not legal
+Checked for legal move with card Bee at row 0 col 3
+Move was not legal
+Checked for legal move with card Bee at row 0 col 4
+Move was not legal
+getRowScores(1)
+Checked for legal move with card Bee at row 1 col 0
+Move was legal
+Checked for legal move with card Bee at row 1 col 1
+Move was not legal
+Checked for legal move with card Bee at row 1 col 2
+Move was not legal
+Checked for legal move with card Bee at row 1 col 3
+Move was not legal
+Checked for legal move with card Bee at row 1 col 4
+Move was not legal
+getRowScores(2)
+Checked for legal move with card Bee at row 2 col 0
+Move was legal
+Checked for legal move with card Bee at row 2 col 1
+Move was not legal
+Checked for legal move with card Bee at row 2 col 2
+Move was not legal
+Checked for legal move with card Bee at row 2 col 3
+Move was not legal
+Checked for legal move with card Bee at row 2 col 4
+Move was not legal
+getRowScores(0)
+Checked for legal move with card Viper at row 0 col 0
+Move was legal
+Checked for legal move with card Viper at row 0 col 1
+Move was not legal
+Checked for legal move with card Viper at row 0 col 2
+Move was not legal
+Checked for legal move with card Viper at row 0 col 3
+Move was not legal
+Checked for legal move with card Viper at row 0 col 4
+Move was not legal
+getRowScores(1)
+Checked for legal move with card Viper at row 1 col 0
+Move was legal
+Checked for legal move with card Viper at row 1 col 1
+Move was not legal
+Checked for legal move with card Viper at row 1 col 2
+Move was not legal
+Checked for legal move with card Viper at row 1 col 3
+Move was not legal
+Checked for legal move with card Viper at row 1 col 4
+Move was not legal
+getRowScores(2)
+Checked for legal move with card Viper at row 2 col 0
+Move was legal
+Checked for legal move with card Viper at row 2 col 1
+Move was not legal
+Checked for legal move with card Viper at row 2 col 2
+Move was not legal
+Checked for legal move with card Viper at row 2 col 3
+Move was not legal
+Checked for legal move with card Viper at row 2 col 4
+Move was not legal
