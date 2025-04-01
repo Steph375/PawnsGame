@@ -1,8 +1,6 @@
 package controller;
 
-
 import model.PlayerColor;
-
 
 public interface ModelListener {
   void onTurnChanged(PlayerColor currentPlayer);

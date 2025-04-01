@@ -19,22 +19,16 @@ public class MachinePlayer implements ActionPlayer {
   }
 
   @Override
-  public void beginTurn(PawnsGame model, ViewActions observer) {
+  public void beginTurn(PawnsGameReadOnly model, ViewActions observer) {
     // Only proceed if it's the machine player's turn
     if (model.getCurrentPlayer() != color) {
-      System.out.println("It's not the machine player's turn.");
       observer.onPassTurn();
       return;
     }
 
-    // Machine draws a card only on its turn
-    model.drawCard();  // Ensure the correct player draws a card on their turn.
-
-    System.out.println("Machine player starting turn...");
     Move move = strategy.chooseMove(model);
 
     if (move == null || move.getCard() == null) {
-      System.out.println("Machine has no move, passing...");
       observer.onPassTurn();
       return;
     }
@@ -49,13 +43,9 @@ public class MachinePlayer implements ActionPlayer {
     }
 
     if (index == -1) {
-      System.out.println("Card not found in hand, passing...");
       observer.onPassTurn();
       return;
     }
-
-    System.out.println("Machine playing card index " + index + " at " +
-            move.getRow() + "," + move.getCol());
 
     observer.onCardSelected(index, color);
     observer.onCellSelected(move.getRow(), move.getCol());

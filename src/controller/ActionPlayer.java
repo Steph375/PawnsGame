@@ -1,8 +1,7 @@
 package controller;
 
-
-import model.PawnsGame;
+import model.PawnsGameReadOnly;
 
 public interface ActionPlayer{
-  void beginTurn(PawnsGame model, ViewActions observer);
+  void beginTurn(PawnsGameReadOnly model, ViewActions observer);
 }

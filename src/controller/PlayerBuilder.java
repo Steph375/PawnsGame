@@ -1,15 +1,13 @@
-package model;
+package controller;
 
-import controller.ActionPlayer;
-import controller.HumanPlayer;
-import controller.MachinePlayer;
+import model.PlayerColor;
 import strategies.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Builds players based on a type string (e.g., "human", "strategy1", "strategy1,strategy3").
+ * Builds players based on a type string ("human", "strategy1", "strategy1,strategy3").
  */
 public class PlayerBuilder {
 
@@ -27,6 +25,7 @@ public class PlayerBuilder {
 
     String[] parts = lowered.split(",");
     List<Strategies> strategies = new ArrayList<>();
+
 
     for (String name : parts) {
       switch (name.trim()) {
@@ -56,5 +55,6 @@ public class PlayerBuilder {
             : new MultipleStrategies(strategies);
 
     return new MachinePlayer(color, combined);
+
   }
 }

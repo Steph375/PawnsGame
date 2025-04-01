@@ -77,7 +77,7 @@ public class GameController implements PawnsController, ViewActions, ModelListen
     try {
       Card selectedCard = player.getHand().get(selectedCardIndex);
       model.placeCard(selectedRow, selectedCol, selectedCard);
-      clearSelections();
+
       view.refresh();
     } catch (IllegalArgumentException | IllegalStateException e) {
       showError(e.getMessage());
@@ -92,13 +92,14 @@ public class GameController implements PawnsController, ViewActions, ModelListen
     }
 
     model.passTurn();
-    clearSelections();
+
     view.refresh();
   }
 
 
   @Override
   public void onTurnChanged(PlayerColor currentPlayer) {
+
     this.isTurn = (currentPlayer == player.getColor());
 
     String title = "Player: " + player.getColor();
@@ -110,8 +111,10 @@ public class GameController implements PawnsController, ViewActions, ModelListen
     view.setTitle(title);
     view.refresh();
 
+
     if (isTurn) {
       Aplayer.beginTurn(model, this);
+
     }
     System.out.println("Turn changed to: " + currentPlayer);
 
@@ -123,20 +126,20 @@ public class GameController implements PawnsController, ViewActions, ModelListen
   public void onGameOver(PlayerColor winner, int redScore, int blueScore) {
     String message;
     if (winner == null) {
-      message = "It's a tie!";
+      message = "It's a tie!";  // No score displayed for a tie
     } else {
-      message = "Winner: " + winner;
+      message = "Winner: " + winner + "\n" + winner + " Score: ";
+      // Display the winner's score
+      if (winner == PlayerColor.RED) {
+        message += redScore;
+      } else {
+        message += blueScore;
+      }
     }
-    message += "\nRed Score: " + redScore + ", Blue Score: " + blueScore;
     JOptionPane.showMessageDialog(null, message);
     System.exit(0);
   }
 
-  private void clearSelections() {
-    selectedCardIndex = -1;
-    selectedRow = -1;
-    selectedCol = -1;
-  }
 
   private void showError(String message) {
     JOptionPane.showMessageDialog(null, message);

@@ -109,11 +109,6 @@ public class PawnsGameModel implements PawnsGame {
     this.playerRed = new Player(PlayerColor.RED, deckOne, handSize);
     this.playerBlue = new Player(PlayerColor.BLUE, this.mirrorDeck(deckTwo), handSize);
     this.hasStarted = true;
-
-    for (ModelListener listener : modelListeners) {
-      listener.onTurnChanged(this.turn);
-    }
-
   }
 
   /**
@@ -198,6 +193,7 @@ public class PawnsGameModel implements PawnsGame {
     this.applyCardInfluence(row, col, card);
     this.passes = 0;
     cell.removeAllPawns();
+    this.drawCard();
 
     this.turn = (this.turn == PlayerColor.RED) ? PlayerColor.BLUE : PlayerColor.RED;
 
