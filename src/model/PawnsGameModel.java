@@ -85,7 +85,7 @@ public class PawnsGameModel implements PawnsGame {
    *                 cannot be greater than one third of the deck size
    */
   @Override
-  public void startGame(List<Card> deckOne, List<Card> deckTwo, int handSize, boolean shuffle) {
+  public void setupGame(List<Card> deckOne, List<Card> deckTwo, int handSize, boolean shuffle) {
     int requiredCards = this.rows * this.cols;
     if (deckOne == null || deckOne.size() < (requiredCards + handSize)) {
       throw new IllegalArgumentException("Deck must have at least enough cards to fill the" +
@@ -485,7 +485,7 @@ public class PawnsGameModel implements PawnsGame {
     this.modelListeners.add(listener);
   }
 
-  public void notifyTurn() {
+  public void startGame() {
     for (ModelListener l : modelListeners) {
       l.onTurnChanged(this.turn);
     }

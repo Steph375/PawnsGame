@@ -57,7 +57,7 @@ public class HandPanel extends JPanel implements IHandPanel {
    * Checks the number of cards in this player's hand to update handSize and cardWidth.
    */
   private void updateHand() {
-    if(player == PlayerColor.RED){
+    if (player == PlayerColor.RED) {
       handSize = this.model.getPlayerRed().getHand().size();
     } else {
       handSize = this.model.getPlayerBlue().getHand().size();
@@ -99,17 +99,19 @@ public class HandPanel extends JPanel implements IHandPanel {
       int clickX = e.getX();
       int clickY = e.getY();
 
-      for (int index = 0; index < cardBounds.size(); index++) {
-        Rectangle box = cardBounds.get(index);
-        if (box.contains(clickX, clickY)) {
-          if (selectedCardIndex == index) {
-            selectedCardIndex = -1;
-          } else {
-            selectedCardIndex = index;
+      if (player == model.getCurrentPlayer()) {
+        for (int index = 0; index < cardBounds.size(); index++) {
+          Rectangle box = cardBounds.get(index);
+          if (box.contains(clickX, clickY)) {
+            if (selectedCardIndex == index) {
+              selectedCardIndex = -1;
+            } else {
+              selectedCardIndex = index;
+            }
+            observer.onCardSelected(index, player);
+            repaint();
+            return;
           }
-          observer.onCardSelected(index, player);
-          repaint();
-          return;
         }
       }
     }
@@ -152,13 +154,13 @@ public class HandPanel extends JPanel implements IHandPanel {
     cardBounds.clear(); // Clear previous frame’s boxes
 
     List<Card> hand;
-    if (player == PlayerColor.RED){
+    if (player == PlayerColor.RED) {
       hand = this.model.getPlayerRed().getHand();
     } else {
       hand = this.model.getPlayerBlue().getHand();
     }
 
-    if (hand.isEmpty()){
+    if (hand.isEmpty()) {
       return;
     }
 
@@ -262,8 +264,6 @@ public class HandPanel extends JPanel implements IHandPanel {
       }
     }
   }
-
-
 
 
 }

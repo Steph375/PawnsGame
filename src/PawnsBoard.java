@@ -30,7 +30,7 @@ public class PawnsBoard {
 
     PawnsGameModel model = new PawnsGameModel(3, 5);
     // Use the same deck for both players with a starting hand size of 5 and no shuffling.
-    model.startGame(new ArrayList<>(deck), new ArrayList<>(deck), 5, false);
+    model.setupGame(new ArrayList<>(deck), new ArrayList<>(deck), 5, false);
 
     // Create the textual view.
     TextualView view = new PawnsTextualView(model);

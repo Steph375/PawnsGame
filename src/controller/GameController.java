@@ -116,7 +116,6 @@ public class GameController implements PawnsController, ViewActions, ModelListen
       Aplayer.beginTurn(model, this);
 
     }
-    System.out.println("Turn changed to: " + currentPlayer);
 
   }
 

@@ -72,14 +72,14 @@ public class PawnsGameModelTest {
   }
 
   @Test
-  public void testStartGameExceptions() {
+  public void testSetupGameExceptions() {
     // Exception if first deck is null.
     Assert.assertThrows(IllegalArgumentException.class, () -> {
-      threeByFiveModel.startGame(null, new ArrayList<Card>(sampleDeck), 5, false);
+      threeByFiveModel.setupGame(null, new ArrayList<Card>(sampleDeck), 5, false);
     });
     // Exception if second deck is null.
     Assert.assertThrows(IllegalArgumentException.class, () -> {
-      threeByFiveModel.startGame(new ArrayList<>(sampleDeck), null, 5, false);
+      threeByFiveModel.setupGame(new ArrayList<>(sampleDeck), null, 5, false);
     });
     int requiredCards = threeByFiveModel.getHeight() * threeByFiveModel.getWidth() + 5;
 
@@ -88,26 +88,26 @@ public class PawnsGameModelTest {
 
     // Exception if first deck is too small.
     Assert.assertThrows(IllegalArgumentException.class, () -> {
-      threeByFiveModel.startGame(deck1, new ArrayList<Card>(sampleDeck), 5, false);
+      threeByFiveModel.setupGame(deck1, new ArrayList<Card>(sampleDeck), 5, false);
     });
     // Exception if second deck too small.
     Assert.assertThrows(IllegalArgumentException.class, () -> {
-      threeByFiveModel.startGame(new ArrayList<Card>(sampleDeck), deck2, 5, false);
+      threeByFiveModel.setupGame(new ArrayList<Card>(sampleDeck), deck2, 5, false);
     });
 
     // Exception if hand size <= 0.
     Assert.assertThrows(IllegalArgumentException.class, () -> {
-      threeByFiveModel.startGame(new ArrayList<Card>(sampleDeck),
+      threeByFiveModel.setupGame(new ArrayList<Card>(sampleDeck),
               new ArrayList<Card>(sampleDeck), 0, false);
     });
     // Exception if hand size greater than one-third of deck size.
     Assert.assertThrows(IllegalArgumentException.class, () -> {
-      threeByFiveModel.startGame(new ArrayList<Card>(sampleDeck),
+      threeByFiveModel.setupGame(new ArrayList<Card>(sampleDeck),
               new ArrayList<Card>(sampleDeck), 55, false);
     });
 
     // Start game successfully.
-    this.threeByFiveModel.startGame(new ArrayList<Card>(sampleDeck),
+    this.threeByFiveModel.setupGame(new ArrayList<Card>(sampleDeck),
             new ArrayList<Card>(sampleDeck), 5, false);
     IPlayer playerRed = threeByFiveModel.getPlayerRed();
     IPlayer playerBlue = threeByFiveModel.getPlayerBlue();
@@ -117,7 +117,7 @@ public class PawnsGameModelTest {
     Assert.assertEquals(PlayerColor.BLUE, playerBlue.getColor());
     // throw exception if game already started
     Assert.assertThrows(IllegalStateException.class, () -> {
-      this.threeByFiveModel.startGame(new ArrayList<Card>(sampleDeck),
+      this.threeByFiveModel.setupGame(new ArrayList<Card>(sampleDeck),
               new ArrayList<Card>(sampleDeck), 5, false);
     });
 
@@ -134,7 +134,7 @@ public class PawnsGameModelTest {
     });
 
     // Start game.
-    threeByFiveModel.startGame(new ArrayList<Card>(sampleDeck),
+    threeByFiveModel.setupGame(new ArrayList<Card>(sampleDeck),
             new ArrayList<Card>(sampleDeck), 5, false);
     Assert.assertEquals(0, threeByFiveModel.getPasses());
     // placing a card in a cell with 0 pawns.
@@ -177,7 +177,7 @@ public class PawnsGameModelTest {
 
   @Test
   public void testPlaceCard() {
-    threeByFiveModel.startGame(new ArrayList<>(sampleDeck),
+    threeByFiveModel.setupGame(new ArrayList<>(sampleDeck),
             new ArrayList<>(sampleDeck), 5, false);
     List<Card> handBefore = threeByFiveModel.getCurrentPlayerHand();
 
@@ -215,7 +215,7 @@ public class PawnsGameModelTest {
       model.passTurn();
     });
 
-    model.startGame(new ArrayList<>(sampleDeck), new ArrayList<>(sampleDeck),
+    model.setupGame(new ArrayList<>(sampleDeck), new ArrayList<>(sampleDeck),
             5, false);
 
 
@@ -236,7 +236,7 @@ public class PawnsGameModelTest {
       threeByFiveModel.drawCard();
     });
 
-    threeByFiveModel.startGame(new ArrayList<>(sampleDeck), new ArrayList<>(sampleDeck),
+    threeByFiveModel.setupGame(new ArrayList<>(sampleDeck), new ArrayList<>(sampleDeck),
             5, false);
 
     IPlayer currentPlayer;
@@ -257,7 +257,7 @@ public class PawnsGameModelTest {
 
   @Test
   public void testGetCurrentPlayer() {
-    threeByFiveModel.startGame(new ArrayList<Card>(sampleDeck), new ArrayList<Card>(sampleDeck),
+    threeByFiveModel.setupGame(new ArrayList<Card>(sampleDeck), new ArrayList<Card>(sampleDeck),
             5, false);
     Assert.assertNotNull(threeByFiveModel.getCurrentPlayer());
     Assert.assertEquals(PlayerColor.RED, threeByFiveModel.getCurrentPlayer());
@@ -265,7 +265,7 @@ public class PawnsGameModelTest {
 
   @Test
   public void testGetCurrentPlayerHand() {
-    threeByFiveModel.startGame(new ArrayList<Card>(sampleDeck), new ArrayList<Card>(sampleDeck),
+    threeByFiveModel.setupGame(new ArrayList<Card>(sampleDeck), new ArrayList<Card>(sampleDeck),
             5, false);
     List<Card> hand = threeByFiveModel.getCurrentPlayerHand();
     Assert.assertNotNull(hand);
@@ -328,7 +328,7 @@ public class PawnsGameModelTest {
 
     PawnsGameModel model = new PawnsGameModel(3, 5);
 
-    model.startGame(redDeck, blueDeck, 3, false);
+    model.setupGame(redDeck, blueDeck, 3, false);
 
 
     List<Card> redHand = model.getCurrentPlayerHand();
@@ -381,7 +381,7 @@ public class PawnsGameModelTest {
 
     PawnsGameModel model = new PawnsGameModel(3, 5);
     Assert.assertThrows(IllegalStateException.class, model::determineWinner);
-    model.startGame(redDeck, blueDeck, 1, false);
+    model.setupGame(redDeck, blueDeck, 1, false);
     //game not over
     Assert.assertThrows(IllegalStateException.class, model::determineWinner);
 
@@ -426,7 +426,7 @@ public class PawnsGameModelTest {
 
     PawnsGameModel model = new PawnsGameModel(3, 5);
     Assert.assertThrows(IllegalStateException.class, model::determineWinner);
-    model.startGame(redDeck, blueDeck, 1, false);
+    model.setupGame(redDeck, blueDeck, 1, false);
     //game not over
     Assert.assertThrows(IllegalStateException.class, model::determineWinner);
 
@@ -463,7 +463,7 @@ public class PawnsGameModelTest {
     PawnsGameModel model = new PawnsGameModel(3, 5);
     //game not started
     Assert.assertThrows(IllegalStateException.class, model::determineWinner);
-    model.startGame(deck1, deck2, 1, false);
+    model.setupGame(deck1, deck2, 1, false);
 
     //game not over
     Assert.assertThrows(IllegalStateException.class, model::determineWinner);
@@ -490,7 +490,7 @@ public class PawnsGameModelTest {
 
   @Test
   public void testIsLegalMove() {
-    threeByFiveModel.startGame(new ArrayList<>(sampleDeck), new ArrayList<>(sampleDeck),
+    threeByFiveModel.setupGame(new ArrayList<>(sampleDeck), new ArrayList<>(sampleDeck),
             5, false);
     // Current turn is RED
     // Outofbound indices

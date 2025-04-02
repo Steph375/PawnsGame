@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Builds players based on a type string ("human", "strategy1", "strategy1,strategy3").
  */
-public class PlayerBuilder {
+public class PlayerCreator {
 
   public static ActionPlayer build(PlayerColor color, String type) {
     if (type == null) {

@@ -17,7 +17,7 @@ public interface PawnsGame extends PawnsGameReadOnly {
    *                        cannot be greater than one third of the deck size
    * @param shuffle     decide whether the two decks should be shuffled or not
    */
-  void startGame(List<Card> deckOne, List<Card> deckTwo, int initialHandSize, boolean shuffle);
+  void setupGame(List<Card> deckOne, List<Card> deckTwo, int initialHandSize, boolean shuffle);
 
 
   /**
@@ -48,7 +48,7 @@ public interface PawnsGame extends PawnsGameReadOnly {
 
   void addModelListener(ModelListener listener);
 
-  void notifyTurn();
+  void startGame();
 
 }
 

@@ -73,7 +73,7 @@ public class PawnsTextualViewTest {
             "0 1___1 0\n" +
             "0 1___1 0", view.toString());
 
-    threeByFiveModel.startGame(new ArrayList<Card>(sampleDeck),
+    threeByFiveModel.setupGame(new ArrayList<Card>(sampleDeck),
             new ArrayList<Card>(sampleDeck), 5, false);
 
     Assert.assertEquals("0 1___1 0\n" +

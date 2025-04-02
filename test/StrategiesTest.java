@@ -48,7 +48,7 @@ public class StrategiesTest {
     sampleDeck = DeckReader.readDeck(configFile);
 
     starterGame = new PawnsGameModel(3, 5);
-    starterGame.startGame(new ArrayList<>(sampleDeck), new ArrayList<>(sampleDeck), 5,
+    starterGame.setupGame(new ArrayList<>(sampleDeck), new ArrayList<>(sampleDeck), 5,
             false);
 
     security = sampleDeck.get(0);   // Security 1 2

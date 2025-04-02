@@ -4,7 +4,7 @@ import controller.ActionPlayer;
 import controller.DeckReader;
 import controller.GameController;
 import controller.PawnsController;
-import controller.PlayerBuilder;
+import controller.PlayerCreator;
 import model.*;
 import view.PawnsFrame;
 import view.PawnsView;
@@ -29,10 +29,10 @@ public final class PawnsBoardGame {
     List<Card> blueDeck = DeckReader.readDeck(new File(blueDeckPath));
 
     PawnsGame model = new PawnsGameModel(5, 7);
-    model.startGame(new ArrayList<>(redDeck), new ArrayList<>(blueDeck), 5, false);
+    model.setupGame(new ArrayList<>(redDeck), new ArrayList<>(blueDeck), 5, false);
 
-    ActionPlayer redAPlayer = PlayerBuilder.build(PlayerColor.RED, redType);
-    ActionPlayer blueAPlayer = PlayerBuilder.build(PlayerColor.BLUE, blueType);
+    ActionPlayer redAPlayer = PlayerCreator.build(PlayerColor.RED, redType);
+    ActionPlayer blueAPlayer = PlayerCreator.build(PlayerColor.BLUE, blueType);
 
     PawnsView redView = new PawnsFrame(model, PlayerColor.RED);
     PawnsView blueView = new PawnsFrame(model, PlayerColor.BLUE);
@@ -43,6 +43,6 @@ public final class PawnsBoardGame {
     redController.playGame(model);
     blueController.playGame(model);
 
-    model.notifyTurn();
+    model.startGame();
   }
 }
