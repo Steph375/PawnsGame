@@ -1,13 +1,14 @@
-package controller;
+package player;
 
 import java.util.List;
 
+import controller.ViewActions;
 import model.Card;
-import model.PawnsGame;
 import model.PawnsGameReadOnly;
 import model.PlayerColor;
 import strategies.Move;
 import strategies.Strategies;
+
 
 public class MachinePlayer implements ActionPlayer {
   private final PlayerColor color;

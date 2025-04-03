@@ -1,6 +1,7 @@
 package controller;
 
 
+import player.ActionPlayer;
 import model.Card;
 import model.IPlayer;
 import model.PawnsGame;
@@ -118,7 +119,6 @@ public class GameController implements PawnsController, ViewActions, ModelListen
     }
 
   }
-
 
 
   @Override

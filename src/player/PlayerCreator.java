@@ -1,4 +1,4 @@
-package controller;
+package player;
 
 import model.PlayerColor;
 import strategies.*;

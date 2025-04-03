@@ -1,6 +1,6 @@
-## User-Player Interface Design
+## User-player Interface Design
 The primary behavior of a user player is to play a turn in the game. To implement this behavior, we
-would create a Player Interface with different classes that implement it representing either a human
+would create a player Interface with different classes that implement it representing either a human
 or AI player. The interface would represent this behavior with a public `playTurn()` method. A human
 player would play their turn by interacting with the controller through the game's GUI. An AI player 
 would rely on some other automated process to interact with the different possible moves.

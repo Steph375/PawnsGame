@@ -2,7 +2,7 @@
 * In this project, we created the model and a textual view for a two player game called PawnsBoard.
   In our model, the board is represented by a 2D array of Cell objects, which have behavior visible
   through the public interface BoardCell, which the Cell class implements. These objects keep track
-  of the Player in possession of the cell, the number of pawns in the cell, and the card placed in
+  of the player in possession of the cell, the number of pawns in the cell, and the card placed in
   the cell.
 * The game is played using cards, specifically the PawnCard class with behavior made public by
   implementing the Card interface.
@@ -63,10 +63,10 @@
 * **PawnCards** are the cards that are used to play the game, and influence and change the board that
   the game is played on, as well as informing the scoring of the game.
 * The board is comprised of **Cells**, which track information like what card is placed in that cell,
-  the number of pawns in that cell, and the Player (red or blue) that is in possession of that cell.
+  the number of pawns in that cell, and the player (red or blue) that is in possession of that cell.
   It also offers methods to change these states.
-* The model uses **Players** to store information about each (red or blue) Player's hand and deck
-  as well as methods to observe this information and change the Player's hand and deck.
+* The model uses **Players** to store information about each (red or blue) player's hand and deck
+  as well as methods to observe this information and change the player's hand and deck.
 
 
 * The **controller.DeckReader** is a utility class that allows the creation of card decks from outside configuration
@@ -86,6 +86,7 @@
 * The **controller.DeckReader** is placed outside the model because we feel that it is more so a
   part of the controller and therefore the model doesn't need to have access to it since it
   doesn't interact with it directly ever.
+
 
 ## HW 6
 ### Changes for part 2
@@ -122,3 +123,56 @@
   to identify which stage of gameplay they represent.
 * .txt files transcribing Strategies 1 and 2 can be found in the same location
 
+
+## HW 7
+### Changes for part 3
+* Ensured that cards could not be selected in a player's GUI window if it's not that player's turn.
+* Changed the name of the startGame method in the model interface to setUpGame to more accurately
+  describe the behavior of that method.
+* In the model, added a `addModelListener` method to add a ModelListener to the model
+* In the model added a new `startGame` method that notifies the ModelListeners that it's the first
+  player's turn.
+* We updated the main method in **PawnsBoardGame** to use the new controller
+* We changed the game screenshots to reflect the new label at the top that indicates who's turn it 
+  is
+
+### New Classes
+* We created an interface **ActionPlayer** representing a player that can take actions in our game
+  this interface is found in the **player** package, and has a 
+* We created a **MachinePlayer** implementation of that interface, also in the **player** package
+  to handle the behavior of an AI player when it's their turn to play.
+* We created a **HumanPlayer** implementation of that interface in the same **player** package.
+  This implementation does nothing in the startTurn method, as input from the human player will
+  be delivered to the controller directly from user interaction with the GUI.
+* We created a **PlayerCreator** class in the **player** package that contains the static factory 
+  method build(PlayerColor, String) which creates a player of the specified color and type (human,
+  or the Strategy to be used by an AI player)
+
+
+* Added a **ModelListener** interface to the **controller** package to serve as an observer of
+  the changing state of the model. Specifically, when the turn changes and when the game ends.
+* Created a **GameController** class in the **controller** package that moderates interactions 
+  between the GUI and the model.
+
+
+* created new classes for testing and mocking components in the **test** directory:
+  * ControllerTest
+  * MachinePlayerTest
+  * MockActionPlayer
+  * MockModel
+  * MockPlayer
+  * MockView
+
+### Main / Updated JAR
+* The main method for PawnsBoardGame (and the JAR that runs it) takes arguments from the command
+  line in the form: <red deck file path> <blue deck file path> <red player type> <blue player type>
+* type means either "human" or the name of the strategy:
+  * 'strategy1' will create an AI player using the FillFirst strategy
+  * 'strategy2' will create an AI player using the ControlBoard strategy
+  * 'strategy3' will create an AI player using the MaximizeScore strategy
+  * 'strategy4' will create an AI player using the NoGoodMove strategy
+  * The AI player can also use MultipleStrategies. These are inputted in a comma separated list.
+    For example, 'strategy2, strategy1'
+* Notably, the main method ends with `model.startGame();`. Without this method call, the controller 
+  won't know that it's the red player's turn, and interacting with either frame will produce an 
+  error message that it's not your turn.

@@ -1,10 +1,10 @@
 
 
-import controller.ActionPlayer;
+import player.ActionPlayer;
 import controller.DeckReader;
 import controller.GameController;
 import controller.PawnsController;
-import controller.PlayerCreator;
+import player.PlayerCreator;
 import model.*;
 import view.PawnsFrame;
 import view.PawnsView;
@@ -16,7 +16,7 @@ import java.util.List;
 public final class PawnsBoardGame {
   public static void main(String[] args) {
     if (args.length != 4) {
-      System.out.println("Usage: <redDeckPath> <blueDeckPath> <redType> <blueType>");
+      System.out.println("Please input: <redDeckPath> <blueDeckPath> <redType> <blueType>");
       System.exit(1);
     }
 
