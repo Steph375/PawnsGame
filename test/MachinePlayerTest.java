@@ -2,6 +2,8 @@
 
 import controller.ViewActions;
 import model.*;
+
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,7 +15,6 @@ import strategies.Strategies;
 import java.util.HashMap;
 import java.util.List;
 
-import static org.junit.Assert.*;
 
 public class MachinePlayerTest {
   private StringBuilder log;
@@ -38,9 +39,9 @@ public class MachinePlayerTest {
     machine.beginTurn(model, observer);
 
     String[] lines = log.toString().split("\n");
-    assertEquals("setCurrentPlayer BLUE", lines[0]);
-    assertEquals("getCurrentPlayer", lines[1]);
-    assertEquals("onPassTurn", lines[2]);
+    Assert.assertEquals("setCurrentPlayer BLUE", lines[0]);
+    Assert.assertEquals("getCurrentPlayer", lines[1]);
+    Assert.assertEquals("onPassTurn", lines[2]);
   }
 
   @Test
@@ -51,10 +52,10 @@ public class MachinePlayerTest {
     machine.beginTurn(model, observer);
 
     String[] lines = log.toString().split("\n");
-    assertEquals("setCurrentPlayer RED", lines[0]);
-    assertEquals("getCurrentPlayer", lines[1]);
-    assertEquals("chooseMove", lines[2]);
-    assertEquals("onPassTurn", lines[3]);
+    Assert.assertEquals("setCurrentPlayer RED", lines[0]);
+    Assert.assertEquals("getCurrentPlayer", lines[1]);
+    Assert.assertEquals("chooseMove", lines[2]);
+    Assert.assertEquals("onPassTurn", lines[3]);
   }
 
   @Test
@@ -67,12 +68,12 @@ public class MachinePlayerTest {
     machine.beginTurn(model, observer);
 
     String[] lines = log.toString().split("\n");
-    assertEquals("setCurrentPlayer RED", lines[0]);
-    assertEquals("setCurrentPlayerHand 0 cards", lines[1]);
-    assertEquals("getCurrentPlayer", lines[2]);
-    assertEquals("chooseMove", lines[3]);
-    assertEquals("getCurrentPlayerHand", lines[4]);
-    assertEquals("onPassTurn", lines[5]);
+    Assert.assertEquals("setCurrentPlayer RED", lines[0]);
+    Assert.assertEquals("setCurrentPlayerHand 0 cards", lines[1]);
+    Assert.assertEquals("getCurrentPlayer", lines[2]);
+    Assert.assertEquals("chooseMove", lines[3]);
+    Assert.assertEquals("getCurrentPlayerHand", lines[4]);
+    Assert.assertEquals("onPassTurn", lines[5]);
   }
 
   @Test
@@ -85,17 +86,16 @@ public class MachinePlayerTest {
     machine.beginTurn(model, observer);
 
     String[] lines = log.toString().split("\n");
-    assertEquals("setCurrentPlayer RED", lines[0]);
-    assertEquals("setCurrentPlayerHand 1 cards", lines[1]);
-    assertEquals("getCurrentPlayer", lines[2]);
-    assertEquals("chooseMove", lines[3]);
-    assertEquals("getCurrentPlayerHand", lines[4]);
-    assertEquals("onCardSelected 0 RED", lines[5]);
-    assertEquals("onCellSelected 1 2", lines[6]);
-    assertEquals("onConfirmMove", lines[7]);
+    Assert.assertEquals("setCurrentPlayer RED", lines[0]);
+    Assert.assertEquals("setCurrentPlayerHand 1 cards", lines[1]);
+    Assert.assertEquals("getCurrentPlayer", lines[2]);
+    Assert.assertEquals("chooseMove", lines[3]);
+    Assert.assertEquals("getCurrentPlayerHand", lines[4]);
+    Assert.assertEquals("onCardSelected 0 RED", lines[5]);
+    Assert.assertEquals("onCellSelected 1 2", lines[6]);
+    Assert.assertEquals("onConfirmMove", lines[7]);
   }
 
-  //Mock Classes
 
   private static class MockStrategy implements Strategies {
     private final StringBuilder log;

@@ -6,7 +6,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
 
 public class ControllerTest {
   private StringBuilder log;
@@ -50,9 +49,9 @@ public class ControllerTest {
     controller.onCellSelected(1, 2);
     String[] lines = log.toString().split("\n");
 
-    assertEquals("getPlayerRed", lines[0]);
-    assertEquals("setTitle Player: RED (Your Turn)", lines[1]);
-    assertEquals("refresh", lines[2]);
+    Assert.assertEquals("getPlayerRed", lines[0]);
+    Assert.assertEquals("setTitle Player: RED (Your Turn)", lines[1]);
+    Assert.assertEquals("refresh", lines[2]);
   }
 
   @Test
