@@ -1,6 +1,7 @@
 
 import controller.GameController;
-import model.*;
+import model.PawnsGame;
+import model.PlayerColor;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -13,16 +14,14 @@ import org.junit.Test;
 public class ControllerTest {
   private StringBuilder log;
   private PawnsGame model;
-  private MockView view;
-  private MockActionPlayer autoPlayer;
   private GameController controller;
 
   @Before
   public void setUp() {
     log = new StringBuilder();
     model = new MockModel(log);
-    view = new MockView(log);
-    autoPlayer = new MockActionPlayer(log);
+    MockView view = new MockView(log);
+    MockActionPlayer autoPlayer = new MockActionPlayer(log);
     controller = new GameController(model, PlayerColor.RED, autoPlayer, view);
   }
 

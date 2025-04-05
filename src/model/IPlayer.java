@@ -2,8 +2,6 @@ package model;
 
 import java.util.List;
 
-import controller.ViewActions;
-
 /**
  * Represents a Player in the Pawns Game.
  */

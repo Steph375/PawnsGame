@@ -11,11 +11,10 @@ import java.awt.event.MouseAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.*;
+import javax.swing.JPanel;
 
 import controller.ViewActions;
 import model.Card;
-import model.IPlayer;
 import model.InfluencePosition;
 import model.PawnsGameReadOnly;
 import model.PlayerColor;

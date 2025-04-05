@@ -1,14 +1,19 @@
 package player;
 
 import model.PlayerColor;
-import strategies.*;
+import strategies.ControlBoard;
+import strategies.FillFirst;
+import strategies.MaximizeScore;
+import strategies.MultipleStrategies;
+import strategies.NoGoodMove;
+import strategies.Strategies;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * A factory class for building a ActionPlayer of the given color and type (human or machine using
- * the given Strategy)
+ * the given Strategy).
  */
 public class PlayerCreator {
 

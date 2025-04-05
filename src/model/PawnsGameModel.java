@@ -480,11 +480,12 @@ public class PawnsGameModel implements PawnsGame {
     return this.cols;
   }
 
-
+  @Override
   public void addModelListener(ModelListener listener) {
     this.modelListeners.add(listener);
   }
 
+  @Override
   public void startGame() {
     for (ModelListener l : modelListeners) {
       l.onTurnChanged(this.turn);

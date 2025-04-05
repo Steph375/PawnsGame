@@ -3,8 +3,6 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-import controller.ViewActions;
-
 /**
  * Represents a Player in the Pawns Game model.
  * A player has control over their own deck and hand and score.

@@ -46,8 +46,15 @@ public interface PawnsGame extends PawnsGameReadOnly {
    */
   void drawCard();
 
+  /**
+   * Adds the given ModelListener to the model.
+   * @param listener the ModelListener to respond to events in this model.
+   */
   void addModelListener(ModelListener listener);
 
+  /**
+   * Notify the ModelListeners that the game has started, and that it's the red players turn.
+   */
   void startGame();
 
 }

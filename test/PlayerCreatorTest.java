@@ -1,12 +1,15 @@
 
 
 import controller.ViewActions;
-import model.*;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import model.Card;
+import model.PawnCard;
+import model.PawnsGameReadOnly;
+import model.PlayerColor;
 import player.ActionPlayer;
 import player.PlayerCreator;
 import strategies.Move;
@@ -15,7 +18,9 @@ import strategies.Strategies;
 import java.util.HashMap;
 import java.util.List;
 
-
+/**
+ * A class for testing the behavior of the PlayerCreator.
+ */
 public class PlayerCreatorTest {
   private StringBuilder log;
   private MockModel model;
@@ -44,6 +49,7 @@ public class PlayerCreatorTest {
     Assert.assertEquals("setCurrentPlayerHand 1 cards", lines[1]);
 
   }
+
   @Test
   public void testHumanPlayerBlueDoesNothing() {
     ActionPlayer player = PlayerCreator.build(PlayerColor.BLUE, "human");
@@ -60,7 +66,6 @@ public class PlayerCreatorTest {
     Assert.assertEquals("setCurrentPlayerHand 1 cards", lines[3]);
 
   }
-
 
   @Test
   public void testSingleStrategyMachinePlayerPlays() {
@@ -112,6 +117,7 @@ public class PlayerCreatorTest {
             PlayerCreator.build(PlayerColor.RED, ""));
     Assert.assertEquals("At least one strategy must be provided.", ex.getMessage());
   }
+
   @Test
   public void testBluePlayerPlaysOnBlueTurn() {
     model.setCurrentPlayer(PlayerColor.BLUE);

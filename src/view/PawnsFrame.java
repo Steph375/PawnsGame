@@ -8,7 +8,6 @@ import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 
 import controller.ViewActions;
-import model.IPlayer;
 import model.PawnsGameReadOnly;
 import model.PlayerColor;
 

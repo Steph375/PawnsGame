@@ -25,7 +25,7 @@ public interface PawnsGameReadOnly {
    * Determines the winner of the game based on the current total scores.
    *
    * @return the model.PlayerColor representing the winner,
-   * or null if the game is tied
+   *         or null if the game is tied
    */
   PlayerColor determineWinner();
 
@@ -94,7 +94,7 @@ public interface PawnsGameReadOnly {
   int getHeight();
 
   /**
-   * Checks how many times the players passes in a row
+   * Checks how many times the players passes in a row.
    *
    * @return int value of the number of passes
    */

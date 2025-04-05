@@ -28,10 +28,10 @@ public class GameController implements PawnsController, ViewActions, ModelListen
    * Creates a controller for the GUI of PawnsBoard.
    * @param model the game the controller is interacting with.
    * @param player the color of the player who's interacting with this controller.
-   * @param APlayer the external player that's playing the game through this controller.
+   * @param aPlayer the external player that's playing the game through this controller.
    * @param view the GUI to display the game on and receive input from.
    */
-  public GameController(PawnsGame model, PlayerColor player, ActionPlayer APlayer, PawnsView view) {
+  public GameController(PawnsGame model, PlayerColor player, ActionPlayer aPlayer, PawnsView view) {
     if (model == null || player == null || view == null) {
       throw new IllegalArgumentException("Arguments to controller cannot be null");
     }
@@ -47,7 +47,7 @@ public class GameController implements PawnsController, ViewActions, ModelListen
     this.selectedCardIndex = -1;
     this.selectedRow = -1;
     this.selectedCol = -1;
-    this.Aplayer = APlayer;
+    this.Aplayer = aPlayer;
   }
 
   @Override
@@ -147,7 +147,7 @@ public class GameController implements PawnsController, ViewActions, ModelListen
   }
 
   /**
-   * Display an error message on the view using a showMessageDialog
+   * Display an error message on the view using a showMessageDialog.
    * @param message the message to display.
    */
   private void showError(String message) {

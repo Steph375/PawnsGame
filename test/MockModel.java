@@ -48,7 +48,8 @@ public class MockModel implements PawnsGame {
 
 
   @Override
-  public void setupGame(List<Card> deckOne, List<Card> deckTwo, int initialHandSize, boolean shuffle) {
+  public void setupGame(List<Card> deckOne, List<Card> deckTwo, int initialHandSize,
+                        boolean shuffle) {
     log.append(String.format("setupGame with handSize=%d shuffle=%b\n", initialHandSize, shuffle));
   }
 
