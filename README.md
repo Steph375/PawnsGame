@@ -74,7 +74,7 @@
 
 ## Source Organization
 * The **src** directory contains:
-  * A **model** package that contains the game's model and classes and interfaces that enable it's
+  * A **model** package that contains the game's model and classes and interfaces that enable its
     implementation.
   * A **view** package that contains the game's textual view.
   * A **PawnsBoard** class that contains a main method demonstrating gameplay.
@@ -135,6 +135,7 @@
 * We updated the main method in **PawnsBoardGame** to use the new controller
 * We changed the game screenshots to reflect the new label at the top that indicates who's turn it 
   is
+* PawnsFrame and HandPanel now take a PlayerColor instead of a Player in their constructors
 
 ### New Classes
 * We created an interface **ActionPlayer** representing a player that can take actions in our game
@@ -165,7 +166,7 @@
 
 ### Main / Updated JAR
 * The main method for PawnsBoardGame (and the JAR that runs it) takes arguments from the command
-  line in the form: <red deck file path> <blue deck file path> <red player type> <blue player type>
+  line in the form: (red deck file path) (blue deck file path) (red player type) (blue player type)
 * type means either "human" or the name of the strategy:
   * 'strategy1' will create an AI player using the FillFirst strategy
   * 'strategy2' will create an AI player using the ControlBoard strategy
@@ -176,3 +177,8 @@
 * Notably, the main method ends with `model.startGame();`. Without this method call, the controller 
   won't know that it's the red player's turn, and interacting with either frame will produce an 
   error message that it's not your turn.
+
+
+* To run the JAR from the terminal using our deck configuration file for both players, with both
+  players set to human, input the following command on one line: 
+  `java -jar HW7.jar docs/deck.config docs/deck.config human human`

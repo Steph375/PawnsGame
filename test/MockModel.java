@@ -8,6 +8,9 @@ import model.IPlayer;
 import model.PawnsGame;
 import model.PlayerColor;
 
+/**
+ * A mock of the model for testing purposes.
+ */
 public class MockModel implements PawnsGame {
   private final StringBuilder log;
   private final IPlayer red = new MockPlayer(PlayerColor.RED, new StringBuilder());
@@ -16,23 +19,33 @@ public class MockModel implements PawnsGame {
   private PlayerColor currentPlayer = PlayerColor.RED;
   private List<Card> currentPlayerHand = new ArrayList<>();
 
+  /**
+   * Creates a mock model with the given StringBuilder to track method calls.
+   * @param log the StringBuilder used to log method calls.
+   */
   public MockModel(StringBuilder log) {
     this.log = log;
   }
 
-  // ---------- Test Helpers ----------
 
+  /**
+   * A helper for testing purposes to set the current player in this mock model.
+   * @param color the color of the player to set the current player to.
+   */
   public void setCurrentPlayer(PlayerColor color) {
     this.currentPlayer = color;
     log.append("setCurrentPlayer ").append(color).append("\n");
   }
 
+  /**
+   * A helper for testing purposed to set the hand of the current player.
+   * @param hand the list of Cards to set the current player's hand to.
+   */
   public void setCurrentPlayerHand(List<Card> hand) {
     this.currentPlayerHand = new ArrayList<>(hand);
     log.append("setCurrentPlayerHand ").append(hand.size()).append(" cards\n");
   }
 
-  // ---------- Game Methods ----------
 
   @Override
   public void setupGame(List<Card> deckOne, List<Card> deckTwo, int initialHandSize, boolean shuffle) {
@@ -64,7 +77,6 @@ public class MockModel implements PawnsGame {
     log.append("startGame\n");
   }
 
-  // ---------- Read-Only Methods ----------
 
   @Override
   public PlayerColor getCurrentPlayer() {

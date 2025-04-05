@@ -10,16 +10,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * A mock of the Player class from the model for testing.
+ */
 public class MockPlayer implements IPlayer {
   private final PlayerColor color;
   private final List<Card> hand;
   private final List<Card> deck;
-  private final StringBuilder log; // Optional: For test verification
+  private final StringBuilder log;
 
-  public MockPlayer(PlayerColor color) {
-    this(color, new StringBuilder());
-  }
-
+  /**
+   * Creates a mock Player class from the model.
+   * @param color the color of this player.
+   * @param log StringBuilder used to track method calls.
+   */
   public MockPlayer(PlayerColor color, StringBuilder log) {
     this.color = color;
     this.log = log;

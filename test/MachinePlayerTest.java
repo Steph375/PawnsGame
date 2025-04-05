@@ -1,12 +1,14 @@
 
-
 import controller.ViewActions;
-import model.*;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import model.Card;
+import model.PawnCard;
+import model.PawnsGameReadOnly;
+import model.PlayerColor;
 import player.MachinePlayer;
 import strategies.Move;
 import strategies.Strategies;
@@ -15,7 +17,9 @@ import strategies.Strategies;
 import java.util.HashMap;
 import java.util.List;
 
-
+/**
+ * A class for testing the behavior of AI players.
+ */
 public class MachinePlayerTest {
   private StringBuilder log;
   private MockModel model;

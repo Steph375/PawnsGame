@@ -2,9 +2,16 @@
 import controller.ViewActions;
 import view.PawnsView;
 
+/**
+ * A mock of the GUI for testing purposes.
+ */
 public class MockView implements PawnsView {
   private final StringBuilder log;
 
+  /**
+   * Creates a mock GUI that tracks method calls with the given StringBuilder.
+   * @param log the StringBuilder used to track method calls.
+   */
   public MockView(StringBuilder log) {
     this.log = log;
   }

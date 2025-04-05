@@ -7,10 +7,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Builds players based on a type string ("human", "strategy1", "strategy1,strategy3").
+ * A factory class for building a ActionPlayer of the given color and type (human or machine using
+ * the given Strategy)
  */
 public class PlayerCreator {
 
+  /**
+   * Creates an ActionPlayer using the given specifications.
+   * @param color the color of this player.
+   * @param type either 'human' or the strategy used by a machine player e.g. 'strategy1'
+   *             'strategy2' or for MultipleStrategies 'strategy3, strategy1'.
+   * @return an ActionPlayer of the specified type and color.
+   */
   public static ActionPlayer build(PlayerColor color, String type) {
     if (type == null) {
       throw new IllegalArgumentException("Player type cannot be null.");
@@ -22,10 +30,8 @@ public class PlayerCreator {
       return new HumanPlayer();
     }
 
-
     String[] parts = lowered.split(",");
     List<Strategies> strategies = new ArrayList<>();
-
 
     for (String name : parts) {
       switch (name.trim()) {
@@ -55,6 +61,5 @@ public class PlayerCreator {
             : new MultipleStrategies(strategies);
 
     return new MachinePlayer(color, combined);
-
   }
 }

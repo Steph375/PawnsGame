@@ -10,11 +10,22 @@ import strategies.Move;
 import strategies.Strategies;
 
 
+/**
+ * An automated player of the PawnsBoard.
+ */
 public class MachinePlayer implements ActionPlayer {
   private final PlayerColor color;
   private final Strategies strategy;
 
+  /**
+   * Creates an automated player.
+   * @param color the color of this player.
+   * @param strategy the Strategy this player will use to play the game.
+   */
   public MachinePlayer(PlayerColor color, Strategies strategy) {
+    if (color == null || strategy == null) {
+      throw new IllegalArgumentException("Arguments cannot be null.");
+    }
     this.color = color;
     this.strategy = strategy;
   }

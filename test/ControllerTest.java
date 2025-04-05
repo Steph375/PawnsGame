@@ -7,6 +7,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 
+/**
+ * A class for testing the behavior of the GUI controller, the GameController class.
+ */
 public class ControllerTest {
   private StringBuilder log;
   private PawnsGame model;

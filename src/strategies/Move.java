@@ -23,14 +23,26 @@ public class Move {
     this.col = col;
   }
 
+  /**
+   * Gets this Move's card.
+   * @return the card to be placed.
+   */
   public Card getCard() {
     return card;
   }
 
+  /**
+   * Gets this Move's row.
+   * @return the row to place the card in.
+   */
   public int getRow() {
     return row;
   }
 
+  /**
+   * Gets this Move's column.
+   * @return the column to place the card in.
+   */
   public int getCol() {
     return col;
   }

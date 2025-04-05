@@ -10,18 +10,28 @@ import view.PawnsView;
 
 import javax.swing.JOptionPane;
 
+/**
+ * A controller to facilitate interactions between the external players through the GUI and the
+ * game's model.
+ */
 public class GameController implements PawnsController, ViewActions, ModelListener {
   private final PawnsGame model;
   private final IPlayer player;
   private final ActionPlayer Aplayer;
   private final PawnsView view;
-
   private boolean isTurn;
   private int selectedCardIndex;
   private int selectedRow;
   private int selectedCol;
 
-  public GameController(PawnsGame model, PlayerColor player, ActionPlayer Aplayer, PawnsView view) {
+  /**
+   * Creates a controller for the GUI of PawnsBoard.
+   * @param model the game the controller is interacting with.
+   * @param player the color of the player who's interacting with this controller.
+   * @param APlayer the external player that's playing the game through this controller.
+   * @param view the GUI to display the game on and receive input from.
+   */
+  public GameController(PawnsGame model, PlayerColor player, ActionPlayer APlayer, PawnsView view) {
     if (model == null || player == null || view == null) {
       throw new IllegalArgumentException("Arguments to controller cannot be null");
     }
@@ -37,8 +47,7 @@ public class GameController implements PawnsController, ViewActions, ModelListen
     this.selectedCardIndex = -1;
     this.selectedRow = -1;
     this.selectedCol = -1;
-    this.Aplayer = Aplayer;
-
+    this.Aplayer = APlayer;
   }
 
   @Override
@@ -97,7 +106,6 @@ public class GameController implements PawnsController, ViewActions, ModelListen
     view.refresh();
   }
 
-
   @Override
   public void onTurnChanged(PlayerColor currentPlayer) {
 
@@ -120,7 +128,6 @@ public class GameController implements PawnsController, ViewActions, ModelListen
 
   }
 
-
   @Override
   public void onGameOver(PlayerColor winner, int redScore, int blueScore) {
     String message;
@@ -139,7 +146,10 @@ public class GameController implements PawnsController, ViewActions, ModelListen
     System.exit(0);
   }
 
-
+  /**
+   * Display an error message on the view using a showMessageDialog
+   * @param message the message to display.
+   */
   private void showError(String message) {
     JOptionPane.showMessageDialog(null, message);
   }
