@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 import java.util.List;
 
-import controller.ModelListener;
 import model.BoardCell;
 import model.Card;
 import model.IPlayer;
+import controller.ModelListener;
 import model.PawnsGame;
 import model.PlayerColor;
 

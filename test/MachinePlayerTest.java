@@ -1,6 +1,3 @@
-
-import controller.ViewActions;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,6 +9,7 @@ import model.PlayerColor;
 import player.MachinePlayer;
 import strategies.Move;
 import strategies.Strategies;
+import controller.ViewActions;
 
 
 import java.util.HashMap;

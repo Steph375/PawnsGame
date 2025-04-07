@@ -1,7 +1,5 @@
 
 
-import controller.ViewActions;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,6 +12,7 @@ import player.ActionPlayer;
 import player.PlayerCreator;
 import strategies.Move;
 import strategies.Strategies;
+import controller.ViewActions;
 
 import java.util.HashMap;
 import java.util.List;

@@ -8,8 +8,8 @@ import controller.ViewActions;
 public interface IHandPanel {
 
   /**
-   * Connects the ViewActions observer that handles user input to this panel.
-   * @param observer the ViewActions object that responds to user input.
+   * Connects the controller.ViewActions observer that handles user input to this panel.
+   * @param observer the controller.ViewActions object that responds to user input.
    */
   void subscribe(ViewActions observer);
 

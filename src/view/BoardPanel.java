@@ -51,8 +51,8 @@ public class BoardPanel extends JPanel implements IBoardPanel {
   }
 
   /**
-   * Connects the ViewActions observe to this panel.
-   * @param observer the ViewActions object that handles user input from the GUI.
+   * Connects the controller.ViewActions observe to this panel.
+   * @param observer the controller.ViewActions object that handles user input from the GUI.
    */
   public void subscribe(ViewActions observer) {
     this.addMouseListener(new BoardMouseListener(observer, model.getHeight(), model.getWidth()));
@@ -68,7 +68,7 @@ public class BoardPanel extends JPanel implements IBoardPanel {
 
     /**
      * Creates a MouseListener for this panel.
-     * @param observer the ViewActions object that handles mouse output.
+     * @param observer the controller.ViewActions object that handles mouse output.
      * @param rows the number of rows on the board in this game.
      * @param cols the number of columns on the board in this game.
      */

@@ -1,6 +1,6 @@
 
-import controller.ViewActions;
 import view.PawnsView;
+import controller.ViewActions;
 
 /**
  * A mock of the GUI for testing purposes.

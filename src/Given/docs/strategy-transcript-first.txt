@@ -1,0 +1,12 @@
+/Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Contents/Home/bin/java -ea -Didea.test.cyclic.buffer.size=1048576 -javaagent:/Applications/IntelliJ IDEA.app/Contents/lib/idea_rt.jar=51848:/Applications/IntelliJ IDEA.app/Contents/bin -javaagent:/Users/tiff/Library/Caches/JetBrains/IntelliJIdea2024.3/captureAgent/debugger-agent.jar -Dkotlinx.coroutines.debug.enable.creation.stack.trace=false -Ddebugger.agent.enable.coroutines=true -Dkotlinx.coroutines.debug.enable.flows.stack.trace=true -Dkotlinx.coroutines.debug.enable.mutable.state.flows.stack.trace=true -Dfile.encoding=UTF-8 -classpath /Applications/IntelliJ IDEA.app/Contents/lib/idea_rt.jar:/Applications/IntelliJ IDEA.app/Contents/plugins/junit/lib/junit5-rt.jar:/Applications/IntelliJ IDEA.app/Contents/plugins/junit/lib/junit-rt.jar:/Users/tiff/Documents/School/OOD/hw5/ood-Pawns-Board/out/test/hw5:/Users/tiff/Documents/School/OOD/hw5/ood-Pawns-Board/out/production/hw5:/Users/tiff/.m2/repository/junit/junit/4.13.1/junit-4.13.1.jar:/Users/tiff/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar com.intellij.rt.junit.JUnitStarter -ideVersion5 -junit4 player.computer.FillTest
+transcript of fill test:
+getPlayerHand() called for team: RED
+getRowSize() called
+getColSize() called
+isLegalMove() called with move: model.Move@b3d7190 for team: RED
+Fill strategy chose to PLACE a card at row: 0, col: 0 using hand index: 0
+
+Process finished with exit code 0
+
+Student note: the way i coded this strategy, it uses isLegalMove to try different spots, it doesnt
+actually check whats on the board. But it only calls isLegalMove once in this case :)

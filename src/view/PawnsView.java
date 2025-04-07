@@ -17,8 +17,8 @@ public interface PawnsView {
   void makeVisible();
 
   /**
-   * Connects the ViewActions object that handles user input to this panel.
-   * @param observer the ViewActions object that handles user input.
+   * Connects the controller.ViewActions object that handles user input to this panel.
+   * @param observer the controller.ViewActions object that handles user input.
    */
   void subscribe(ViewActions observer);
 

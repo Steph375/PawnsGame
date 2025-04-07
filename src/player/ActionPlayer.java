@@ -1,7 +1,7 @@
 package player;
 
-import controller.ViewActions;
 import model.PawnsGameReadOnly;
+import controller.ViewActions;
 
 /**
  * This interface represents an external player that interacts with the game.

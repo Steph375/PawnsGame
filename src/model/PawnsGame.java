@@ -47,8 +47,8 @@ public interface PawnsGame extends PawnsGameReadOnly {
   void drawCard();
 
   /**
-   * Adds the given ModelListener to the model.
-   * @param listener the ModelListener to respond to events in this model.
+   * Adds the given controller.ModelListener to the model.
+   * @param listener the controller.ModelListener to respond to events in this model.
    */
   void addModelListener(ModelListener listener);
 

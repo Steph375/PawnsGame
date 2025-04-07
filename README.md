@@ -129,7 +129,7 @@
 * Ensured that cards could not be selected in a player's GUI window if it's not that player's turn.
 * Changed the name of the startGame method in the model interface to setUpGame to more accurately
   describe the behavior of that method.
-* In the model, added a `addModelListener` method to add a ModelListener to the model
+* In the model, added a `addModelListener` method to add a controller.ModelListener to the model
 * In the model added a new `startGame` method that notifies the ModelListeners that it's the first
   player's turn.
 * We updated the main method in **PawnsBoardGame** to use the new controller
@@ -150,7 +150,7 @@
   or the Strategy to be used by an AI player)
 
 
-* Added a **ModelListener** interface to the **controller** package to serve as an observer of
+* Added a **controller.ModelListener** interface to the **controller** package to serve as an observer of
   the changing state of the model. Specifically, when the turn changes and when the game ends.
 * Created a **GameController** class in the **controller** package that moderates interactions 
   between the GUI and the model.

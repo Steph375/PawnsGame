@@ -70,9 +70,9 @@ public class HandPanel extends JPanel implements IHandPanel {
   }
 
   /**
-   * Connects the ViewActions observe to this panel.
+   * Connects the controller.ViewActions observe to this panel.
    *
-   * @param observer the ViewActions object that handles user input from the GUI.
+   * @param observer the controller.ViewActions object that handles user input from the GUI.
    */
   public void subscribe(ViewActions observer) {
     this.addMouseListener(new HandMouseListener(observer));
@@ -87,7 +87,7 @@ public class HandPanel extends JPanel implements IHandPanel {
     /**
      * Creates a MouseListener for this panel.
      *
-     * @param observer the ViewActions object that handles mouse output.
+     * @param observer the controller.ViewActions object that handles mouse output.
      */
     public HandMouseListener(ViewActions observer) {
       this.observer = observer;

@@ -1,7 +1,7 @@
 
 import player.ActionPlayer;
-import controller.ViewActions;
 import model.PawnsGameReadOnly;
+import controller.ViewActions;
 
 /**
  * A mock ActionPlayer for testing purposes.
