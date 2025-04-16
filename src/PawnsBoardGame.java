@@ -1,7 +1,7 @@
 
 
-import AdapterStuff.PawnsGameToProviderModel;
-import AdapterStuff.ProviderViewToPawnsView;
+import adapters.PawnsGameToProviderModel;
+import adapters.ProviderViewToPawnsView;
 import model.Card;
 import model.PawnsGame;
 import model.PawnsGameModel;
@@ -46,8 +46,8 @@ public final class PawnsBoardGame {
     PawnsGame model = new PawnsGameModel(5, 7);
     model.setupGame(new ArrayList<>(redDeck), new ArrayList<>(blueDeck), 5, false);
 
-    ActionPlayer redAPlayer = PlayerCreator.build(PlayerColor.RED, "human");
-    ActionPlayer blueAPlayer = PlayerCreator.build(PlayerColor.BLUE, "human");
+    ActionPlayer redAPlayer = PlayerCreator.build(PlayerColor.RED, redType);
+    ActionPlayer blueAPlayer = PlayerCreator.build(PlayerColor.BLUE, blueType);
 
     PawnsView redView = new PawnsFrame(model, PlayerColor.RED);
     PawnsGameToProviderModel adapterModel = new PawnsGameToProviderModel(model);

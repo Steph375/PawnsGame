@@ -1,4 +1,4 @@
-package AdapterStuff;
+package adapters;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +11,16 @@ import provider.model.Pawn;
 import provider.model.PlayerTeam;
 import provider.model.ReadonlyPawnsBoard;
 
+/**
+ * An object adapter class to adapt our model to the provider's model.
+ */
 public class PawnsGameToProviderModel implements ReadonlyPawnsBoard {
   private final PawnsGame model;
 
+  /**
+   * Creates an object adapter that adapts the given PawnsGame to the provider's model type.
+   * @param model the PawnsBoard object to be adapted.
+   */
   public PawnsGameToProviderModel(PawnsGame model) {
     if (model == null) {
       throw new IllegalArgumentException("model cannot be null");
@@ -67,15 +74,20 @@ public class PawnsGameToProviderModel implements ReadonlyPawnsBoard {
   @Override
   public PlayerTeam getWinner() {
     PlayerColor winner = model.determineWinner();
-    if (winner == null) return null;
+    if (winner == null) {
+      return null; }
     return winner == PlayerColor.RED ? PlayerTeam.RED : PlayerTeam.BLUE;
   }
 
   @Override
   public Boolean isLegalMove(Move move, PlayerTeam team) {
     List<Card> hand = model.getCurrentPlayerHand();
-    if (move.moveType == provider.model.MoveType.PASS) return true;
-    if (move.handIdx >= hand.size()) return false;
+    if (move.moveType == provider.model.MoveType.PASS) {
+      return true;
+    }
+    if (move.handIdx >= hand.size()) {
+      return false;
+    }
     return model.isLegalMove(move.placeRow, move.placeCol, hand.get(move.handIdx));
   }
 
@@ -110,7 +122,8 @@ public class PawnsGameToProviderModel implements ReadonlyPawnsBoard {
       return new PawnsCardToProviderCard(cell.getCard(), team);
     }
     if (cell.getPawns() > 0) {
-      return new Pawn(cell.getPawns(), cell.getColor() == PlayerColor.RED ? PlayerTeam.RED : PlayerTeam.BLUE);
+      return new Pawn(cell.getPawns(),
+              cell.getColor() == PlayerColor.RED ? PlayerTeam.RED : PlayerTeam.BLUE);
     }
     return null;
   }

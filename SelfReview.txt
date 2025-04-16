@@ -1,0 +1,17 @@
+We did not receive any requests to change any of our code from the customers that we shared it with.
+We feel that our code was appropriately flexible and allowed for easy adaptation with successful
+object and component separation. By ensuring that we used the interface types with all the necessary
+methods, including getter methods, throughout our code, we were confident that a customer would be
+able to easily adapt to our design. We ensured that all methods in our code included proper
+documentation describing their purpose and explaining their parameters to enable a clear
+understanding of what each component was capable of doing. Something that we learned while working
+with our provider's code was that using interface types throughout the code is necessary.
+
+When working with our providers, they were responsive and attempted the updates that we requested of
+them. However, much of their code was undocumented, and we discovered that they were accessing
+fields of objects instead of utilizing getter methods, which caused problems when we tried to craft
+adapters. In their attempts to fix these problems, by creating the interfaces we requested, they
+introduced new issues by casting objects in their view implementation to the specific class type,
+and then accessing those fields directly. At times, we also received conflicting versions of the
+same files from different group members. This further complicated the issues mentioned above and
+prevented us from utilizing the adapter we wrote and some of the files they provided.

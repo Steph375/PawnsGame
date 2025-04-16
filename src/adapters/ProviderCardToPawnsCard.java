@@ -1,4 +1,4 @@
-package AdapterStuff;
+package adapters;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,16 +9,26 @@ import model.Card;
 import model.InfluencePosition;
 import model.PawnCard;
 
+/**
+ * An object adapter to convert the provider's card to our Card type.
+ */
 public class ProviderCardToPawnsCard implements Card {
   provider.model.Card card;
 
+  /**
+   * Creates a new object adapter to adapt the given provider card to our Card type.
+   * @param card the provider card to be adapted.
+   */
   public ProviderCardToPawnsCard(provider.model.Card card) {
+    if (card == null) {
+      throw new IllegalArgumentException("card cannot be null");
+    }
     this.card = card;
   }
 
   @Override
   public int getValueScore() {
-      return this.card.value;
+    return this.card.value;
   }
 
   @Override
@@ -30,7 +40,7 @@ public class ProviderCardToPawnsCard implements Card {
   public List<InfluencePosition> getInfluence() {
     ArrayList<InfluencePosition> positionList = new ArrayList<InfluencePosition>();
 
-    for(int row = 0; row < this.card.influence.length; row++) {
+    for (int row = 0; row < this.card.influence.length; row++) {
       for (int col = 0; col < this.card.influence[row].length; col++) {
         if (this.card.influence[row][col] == 0) {
           // add/subtract to convert to the coordinate system we use for InfluencePosition
@@ -56,7 +66,7 @@ public class ProviderCardToPawnsCard implements Card {
     // replace mirrored positions that have influence with 1
     for (InfluencePosition pos : influence) {
       int mirroredX = pos.getX() * -1;
-      newInfluence[mirroredX + 2][(-1 *pos.getY()) -2] = 1;
+      newInfluence[mirroredX + 2][(-1 * pos.getY()) - 2] = 1;
     }
     HashMap<InfluencePosition, Boolean> influenceMap = new HashMap<>();
     for (int row = 0; row < 5; row++) {
@@ -68,7 +78,7 @@ public class ProviderCardToPawnsCard implements Card {
         }
       }
     }
-   return new PawnCard(this.card.name, this.card.cost, this.card.value, influenceMap);
+    return new PawnCard(this.card.name, this.card.cost, this.card.value, influenceMap);
   }
 
   @Override

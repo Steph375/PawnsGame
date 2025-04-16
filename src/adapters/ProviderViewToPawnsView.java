@@ -1,4 +1,4 @@
-package AdapterStuff;
+package adapters;
 
 import controller.ViewActions;
 import model.PlayerColor;
@@ -7,10 +7,11 @@ import provider.view.graphical.GUIView;
 import view.PawnsView;
 
 
-
+/**
+ * Object adapter to convert the provider's GUI to ours.
+ */
 public class ProviderViewToPawnsView implements PawnsView {
   private final GUIView providerView;
-  private final PlayerColor playerColor;
 
   /**
    * Constructs an adapter around the provider's GUIView to match our PawnsView interface.
@@ -20,7 +21,6 @@ public class ProviderViewToPawnsView implements PawnsView {
       throw new IllegalArgumentException("model and playerColor cannot be null");
     }
     this.providerView = view;
-    this.playerColor = playerColor;
   }
 
   /**
@@ -28,8 +28,8 @@ public class ProviderViewToPawnsView implements PawnsView {
    */
   @Override
   public void subscribe(ViewActions observer) {
-      provider.controller.ViewActions adapter = new ActionsAdapter(observer);
-      this.providerView.setActionsListener(adapter);
+    provider.controller.ViewActions adapter = new ActionsAdapter(observer);
+    this.providerView.setActionsListener(adapter);
   }
 
   @Override

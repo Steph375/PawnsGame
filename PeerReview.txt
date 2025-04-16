@@ -1,0 +1,38 @@
+From reading the providers’ code, we can tell that it is likely functional. However, information
+hiding was an issue with their code. Many of the files they provided existed only as class types,
+without an interface. This was one of the fixes we had to ask them to implement. A specific example
+is their card class, as well as their HumanActions class which implemented their ViewActions
+interface but was the type used throughout their view code. We think that their design could been
+improved by ensuring that all public methods were made available through an interface type instead
+of by making methods in a class public. Similarly, many fields of the classes they provided were
+public, and the classes did not make getter methods available, with these fields only accessible by
+directly accessing the public field. Data integrity could have been better preserved and
+implementation details better disguised had public interfaces been made more consistently and fields
+made private. To remedy these issues, they frequently used casting and instanceof checking to make
+their code function. This created issues and prevented us from being able to adapt their code
+successfully.
+
+The providers did make design choices that we shared some that we were inspired by. We also utilized
+a similar enum to represent player color, and they used it throughout their code in a way that was
+similar to how we did. We thought it was interesting how they used a MoveType enum to represent
+whether a player was passing their turn or placing a card. One choice we didn’t understand was why
+the providers created an implementation class of their ViewActions interface instead of simply
+implementing those methods in their controller.
+
+The providers had very little documentation, limited to Javadoc at the top of classes that wasn't
+particularly descriptive. In some interfaces and classes public methods had no Javadoc at all.
+This was especially difficult to manage in their ReadOnlyPawnsBoard interface because it contained
+many methods that were named similarly to ours, but functioned differently without any explanation
+of what specifically they did. In the future, better documentation for public methods would have
+improved code readability.
+
+Ultimately, we were unable to functionally use their view with our code. Although we were able to
+visualize the board on their view, and doing so did not prevent our view from working for the red
+player who was using our view, we were unable to visualize their cards due to a casting exception.
+This casting exception was the result of us asking for them to write a PlayingCard interface, and
+when they tried to fix their card panel to work with that interface, they cast it to their
+specific card implementation class, which throws a class cast exception because our adapter class
+implements the interface but clearly isn't their card implementation, therefore our adapter cannot
+be cast as their class. Further complicating the issue, both group members sent us different,
+conflicting files, which led to further confusion about which version was intended to work with
+their updated view classes, but neither version of the files sent to us resolved the casting error.
