@@ -17,13 +17,14 @@ import model.PlayerColor;
 public class PawnsFrame extends JFrame implements PawnsView {
   private final BoardPanel boardPanel;
   private final HandPanel handPanel;
+  private final ColorScheme scheme;
 
   /**
    * Creates a window of the PawnsBoard GUI.
    * @param model the game to visualize.
    * @param player the Player using this view.
    */
-  public PawnsFrame(PawnsGameReadOnly model, PlayerColor player) {
+  public PawnsFrame(PawnsGameReadOnly model, PlayerColor player, ColorScheme scheme) {
     super();
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -34,9 +35,9 @@ public class PawnsFrame extends JFrame implements PawnsView {
     this.setTitle("Player: " + player);
 
     setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
-
+    this.scheme = scheme;
     // create board and hand panels
-    this.boardPanel = new BoardPanel(model);
+    this.boardPanel = new BoardPanel(model, scheme);
     this.handPanel = new HandPanel(model, player);
 
     // set the size of components

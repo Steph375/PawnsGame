@@ -1,7 +1,4 @@
 
-
-import adapters.PawnsGameToProviderModel;
-import adapters.ProviderViewToPawnsView;
 import model.Card;
 import model.PawnsGame;
 import model.PawnsGameModel;
@@ -11,8 +8,8 @@ import controller.DeckReader;
 import controller.GameController;
 import controller.PawnsController;
 import player.PlayerCreator;
-import provider.model.PlayerTeam;
-import provider.view.graphical.GUIView;
+import view.DefaultColor;
+import view.HighContrast;
 import view.PawnsFrame;
 import view.PawnsView;
 
@@ -46,13 +43,11 @@ public final class PawnsBoardGame {
     PawnsGame model = new PawnsGameModel(5, 7);
     model.setupGame(new ArrayList<>(redDeck), new ArrayList<>(blueDeck), 5, false);
 
-    ActionPlayer redAPlayer = PlayerCreator.build(PlayerColor.RED, redType);
-    ActionPlayer blueAPlayer = PlayerCreator.build(PlayerColor.BLUE, blueType);
+    ActionPlayer redAPlayer = PlayerCreator.build(PlayerColor.RED, "human");
+    ActionPlayer blueAPlayer = PlayerCreator.build(PlayerColor.BLUE, "human");
 
-    PawnsView redView = new PawnsFrame(model, PlayerColor.RED);
-    PawnsGameToProviderModel adapterModel = new PawnsGameToProviderModel(model);
-    GUIView providerView = new GUIView(adapterModel, PlayerTeam.BLUE);
-    PawnsView blueView = new ProviderViewToPawnsView(providerView, PlayerColor.BLUE);
+    PawnsView redView = new PawnsFrame(model, PlayerColor.RED, new HighContrast());
+    PawnsView blueView = new PawnsFrame(model, PlayerColor.BLUE, new HighContrast());
 
     PawnsController redController = new GameController(model, PlayerColor.RED, redAPlayer, redView);
     PawnsController blueController = new GameController(model, PlayerColor.BLUE, blueAPlayer,

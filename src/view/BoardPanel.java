@@ -27,17 +27,19 @@ public class BoardPanel extends JPanel implements IBoardPanel {
   private int cellSize;
   private int boardStartX;
   private int boardStartY;
+  private ColorScheme scheme;
 
 
   /**
    * Creates a BoardPanel for the PawnsBoard GUI.
    * @param model the game to be visualized.
    */
-  BoardPanel(PawnsGameReadOnly model) {
+  BoardPanel(PawnsGameReadOnly model, ColorScheme scheme) {
     super();
     this.model = model;
     this.selectedRow = -1;
     this.selectedCol = -1;
+    this.scheme = scheme;
   }
 
   /**
@@ -114,7 +116,8 @@ public class BoardPanel extends JPanel implements IBoardPanel {
     int height = this.getHeight();
 
     // draw light gray background
-    g2d.setColor(Color.LIGHT_GRAY);
+    g2d.setColor(scheme.getBackgroundColor());
+
     g2d.fillRect(0, 0, width, height);
 
     this.drawBoard(g2d);
@@ -129,7 +132,7 @@ public class BoardPanel extends JPanel implements IBoardPanel {
     int cols = model.getWidth();
     this.updateBoardMetrics();
     // Draw darker gray board background
-    g2d.setColor(Color.GRAY);
+    g2d.setColor(scheme.getBoardBackground());
     g2d.fillRect(boardStartX, boardStartY, cols * cellSize, rows * cellSize);
 
     // Draw highlight if a cell is selected
@@ -137,7 +140,7 @@ public class BoardPanel extends JPanel implements IBoardPanel {
       int xHighlight = boardStartX + (selectedCol * cellSize);
       int yHighlight = boardStartY + (selectedRow * cellSize);
 
-      g2d.setColor(Color.CYAN);
+      g2d.setColor(scheme.getHighlightColor());
       g2d.fillRect(xHighlight, yHighlight, cellSize, cellSize);
     }
 
@@ -172,7 +175,7 @@ public class BoardPanel extends JPanel implements IBoardPanel {
     int blueScore = model.getRowScores(row)[1];
 
     g2d.setFont(new Font("Arial", Font.BOLD, 25));
-    g2d.setColor(Color.BLACK);
+    g2d.setColor(scheme.getTextColor());
 
     g2d.drawString(String.valueOf(redScore), redX, y);
     g2d.drawString(String.valueOf(blueScore), blueX, y);
@@ -191,7 +194,7 @@ public class BoardPanel extends JPanel implements IBoardPanel {
    */
   private void drawCell(Graphics2D g2d, int row, int col, int x, int y,
                         int cellWidth, int cellHeight, boolean highlighted) {
-    g2d.setColor(Color.BLACK);
+    g2d.setColor(scheme.getLineColor());
     g2d.drawRect(x, y, cellWidth, cellHeight);
 
     BoardCell[][] board = model.getBoard();
@@ -250,14 +253,14 @@ public class BoardPanel extends JPanel implements IBoardPanel {
 
 
     if (pawnColor == PlayerColor.RED) {
-      g2d.setColor(Color.decode("#fca6ae"));
+      g2d.setColor(scheme.getPlayerColor(PlayerColor.RED));
 
     } else {
-      g2d.setColor(Color.decode("#93bef3"));
+      g2d.setColor(scheme.getPlayerColor(PlayerColor.BLUE));
     }
 
     g2d.fillOval(x - radius, y - radius, radius * 2, radius * 2);
-    g2d.setColor(Color.BLACK);
+    g2d.setColor(scheme.getTextColor());
     g2d.drawOval(x - radius, y - radius, radius * 2, radius * 2);
   }
 
@@ -277,11 +280,11 @@ public class BoardPanel extends JPanel implements IBoardPanel {
     PlayerColor ownerColor = cell.getColor();
 
     Color cellColor = ownerColor.equals(PlayerColor.RED)
-            ? Color.decode("#fca6ae")
-            : Color.decode("#93bef3");
+            ? scheme.getPlayerColor(PlayerColor.RED)
+            : scheme.getPlayerColor(PlayerColor.BLUE);
 
     if (highlighted) {
-      cellColor = Color.CYAN;
+      cellColor = scheme.getHighlightColor();
     }
 
     // Fill the cell with player's color
@@ -289,11 +292,11 @@ public class BoardPanel extends JPanel implements IBoardPanel {
     g2d.fillRect(x, y, cellWidth, cellHeight);
 
     // Draw cell border
-    g2d.setColor(Color.BLACK);
+    g2d.setColor(scheme.getLineColor());
     g2d.drawRect(x, y, cellWidth, cellHeight);
 
     // Draw card value
-    g2d.setColor(Color.BLACK);
+    g2d.setColor(scheme.getTextColor());
     g2d.setFont(new Font("Arial", Font.BOLD, 20));
 
     // Center the text inside the cell
