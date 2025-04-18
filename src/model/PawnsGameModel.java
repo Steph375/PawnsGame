@@ -14,7 +14,7 @@ import controller.ModelListener;
 public class PawnsGameModel implements PawnsGame {
   private final int rows;
   private final int cols;
-  private BoardCell[][] board;
+  protected BoardCell[][] board;
   private IPlayer playerRed;
   private IPlayer playerBlue;
   private boolean endGame;
@@ -59,7 +59,7 @@ public class PawnsGameModel implements PawnsGame {
    * are owned by the Blue player, and each have one pawn and no cards. The cells in the middle have
    * null values for PlayerColor and Card, and 0 pawns, because they are empty cells.
    */
-  private void initializeBoard() {
+  protected void initializeBoard() {
     this.board = new Cell[rows][cols];
     for (int r = 0; r < rows; r++) {
       for (int c = 0; c < cols; c++) {
@@ -212,7 +212,7 @@ public class PawnsGameModel implements PawnsGame {
    * @param col  position of card x
    * @param card the card being placed
    */
-  private void applyCardInfluence(int row, int col, Card card) {
+  protected void applyCardInfluence(int row, int col, Card card) {
     List<InfluencePosition> influence = card.getInfluence();
     for (InfluencePosition offset : influence) {
       int posCol = col + offset.getX();

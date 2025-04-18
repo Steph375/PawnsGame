@@ -114,4 +114,29 @@ public class Cell implements BoardCell {
   public void removeAllPawns() {
     this.pawns = 0;
   }
+
+  @Override
+  public void applyUpgrade() {
+
+  }
+
+  @Override
+  public void applyDevalue() {
+
+  }
+
+  @Override
+  public int getUpgrade() {
+    return 0;
+  }
+
+  @Override
+  public int getDevalue() {
+    return 0;
+  }
+
+  @Override
+  public void resetModifiers() {
+
+  }
 }

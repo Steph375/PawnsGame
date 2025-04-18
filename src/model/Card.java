@@ -56,4 +56,8 @@ public interface Card {
    * @return int hashcode
    */
   int hashCode();
+
+  List<InfluencePosition> getUpgrades();
+
+  List<InfluencePosition> getDevalues();
 }

@@ -49,4 +49,13 @@ public interface BoardCell {
    */
   void removeAllPawns();
 
+  void applyUpgrade();
+
+  void applyDevalue();
+
+  int getUpgrade();
+
+  int getDevalue();
+
+  void resetModifiers();
 }
