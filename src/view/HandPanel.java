@@ -184,7 +184,19 @@ public class HandPanel extends JPanel implements IHandPanel {
    * @param bounds a rectangle object representing the size of the card.
    * @param index  the card's index in the hand.
    */
-  private void drawCard(Graphics2D g2d, Card card, Rectangle bounds, int index) {
+  protected void drawCard(Graphics2D g2d, Card card, Rectangle bounds, int index) {
+    this.drawCardText(g2d, card, bounds, index);
+    drawInfluenceGrid(g2d, card.getInfluence(), cardBounds.get(index));
+  }
+
+  /**
+   * Draws the text of the card (everything except the influence grid)
+   * @param g2d graphics object for drawing.
+   * @param card the card to be drawn.
+   * @param bounds a rectangle object representing the size of the card.
+   * @param index the card's index in the hand.
+   */
+  protected void drawCardText(Graphics2D g2d, Card card, Rectangle bounds, int index) {
     int x = bounds.x;
     int y = bounds.y;
     int width = bounds.width;
@@ -201,8 +213,6 @@ public class HandPanel extends JPanel implements IHandPanel {
     g2d.drawString(card.getName(), x + 5, y + fontSize);
     g2d.drawString("Cost: " + card.getCost(), x + 5, y + fontSize * 2);
     g2d.drawString("Value: " + card.getValueScore(), x + 5, y + fontSize * 3);
-
-    drawInfluenceGrid(g2d, card.getInfluence(), cardBounds.get(index));
   }
 
   /**

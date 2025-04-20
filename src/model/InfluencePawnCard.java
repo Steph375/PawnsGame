@@ -2,6 +2,7 @@ package model;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -58,5 +59,20 @@ public class InfluencePawnCard extends PawnCard {
     }
     return result;
   }
+
+  @Override
+  public Card mirrorInfluence() {
+    Map<InfluencePosition, InfluenceType> mirrored = new HashMap<>();
+    for (Map.Entry<InfluencePosition, InfluenceType> entry : super.influence.entrySet()) {
+      InfluencePosition pos = entry.getKey();
+      InfluenceType type = entry.getValue();
+      // mirror x
+      InfluencePosition mirroredPos = new InfluencePosition(-pos.getX(), pos.getY());
+      mirrored.put(mirroredPos, type);
+    }
+    return new InfluencePawnCard(getName(), getCost(), getValueScore(), mirrored);
+  }
+
+
 }
 

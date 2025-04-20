@@ -15,8 +15,8 @@ import model.PlayerColor;
  * A window of the PawnsBoard GUI.
  */
 public class PawnsFrame extends JFrame implements PawnsView {
-  private final BoardPanel boardPanel;
-  private final HandPanel handPanel;
+  protected BoardPanel boardPanel;
+  protected HandPanel handPanel;
   private final ColorScheme scheme;
 
   /**

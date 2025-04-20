@@ -1,10 +1,7 @@
 package model;
 
+import java.util.List;
 
-/**
- * A variant of the standard PawnsGameModel that supports new influence types:
- * upgrading and devaluing.
- */
 public class EnhancedPawnsGame extends PawnsGameModel {
 
   public EnhancedPawnsGame(int rows, int cols) {
@@ -36,7 +33,7 @@ public class EnhancedPawnsGame extends PawnsGameModel {
       int r = row - offset.getY();
       int c = col + offset.getX();
       if (isOnBoard(r, c)) {
-        getBoard()[r][c].addPawns(1, player);
+        this.board[r][c].addPawns(1, player);
       }
     }
 
@@ -44,7 +41,7 @@ public class EnhancedPawnsGame extends PawnsGameModel {
       int r = row - offset.getY();
       int c = col + offset.getX();
       if (isOnBoard(r, c)) {
-        getBoard()[r][c].applyUpgrade();
+        this.board[r][c].applyUpgrade();
       }
     }
 
@@ -52,10 +49,11 @@ public class EnhancedPawnsGame extends PawnsGameModel {
       int r = row - offset.getY();
       int c = col + offset.getX();
       if (isOnBoard(r, c)) {
-        getBoard()[r][c].applyDevalue();
+        this.board[r][c].applyDevalue();
       }
     }
   }
+
 
   @Override
   public int[] getRowScores(int row) {
@@ -63,7 +61,7 @@ public class EnhancedPawnsGame extends PawnsGameModel {
     int blueScore = 0;
 
     for (int c = 0; c < getWidth(); c++) {
-      BoardCell cell = getBoard()[row][c];
+      BoardCell cell = board[row][c]; // Use the raw field to avoid copy
       Card card = cell.getCard();
 
       if (card != null) {
@@ -72,8 +70,9 @@ public class EnhancedPawnsGame extends PawnsGameModel {
         int adjusted = Math.max(0, raw + bonus);
 
         if (adjusted == 0) {
-          getBoard()[row][c] = new EnhancedCell(card.getCost(), null, cell.getColor());
-          getBoard()[row][c].resetModifiers();
+          // Instead of replacing the cell, just clear the card and reset modifiers
+          cell.placeCard(null, cell.getColor());
+          cell.resetModifiers();
         } else if (cell.getColor() == PlayerColor.RED) {
           redScore += adjusted;
         } else if (cell.getColor() == PlayerColor.BLUE) {
@@ -85,8 +84,14 @@ public class EnhancedPawnsGame extends PawnsGameModel {
     return new int[]{redScore, blueScore};
   }
 
+
   private boolean isOnBoard(int row, int col) {
     return row >= 0 && row < getHeight() && col >= 0 && col < getWidth();
+  }
+
+  @Override
+  public BoardCell[][] getBoard() {
+    return this.board;
   }
 
 }

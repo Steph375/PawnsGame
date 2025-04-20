@@ -27,7 +27,7 @@ public class BoardPanel extends JPanel implements IBoardPanel {
   private int cellSize;
   private int boardStartX;
   private int boardStartY;
-  private ColorScheme scheme;
+  protected ColorScheme scheme;
 
 
   /**
@@ -192,7 +192,7 @@ public class BoardPanel extends JPanel implements IBoardPanel {
    * @param cellHeight the height of the cell.
    * @param highlighted whether this cell is selected.
    */
-  private void drawCell(Graphics2D g2d, int row, int col, int x, int y,
+  protected void drawCell(Graphics2D g2d, int row, int col, int x, int y,
                         int cellWidth, int cellHeight, boolean highlighted) {
     g2d.setColor(scheme.getLineColor());
     g2d.drawRect(x, y, cellWidth, cellHeight);

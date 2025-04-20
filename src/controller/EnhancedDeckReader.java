@@ -1,6 +1,10 @@
 package controller;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -8,47 +12,47 @@ import model.Card;
 import model.InfluencePawnCard;
 import model.InfluencePosition;
 
-/**
- * A deck reader that supports UPGRADE ('U') and DEVALUE ('D') influence types.
- */
 public class EnhancedDeckReader extends DeckReader {
 
+  public static List<Card> readDeck(File file) {
+    List<Card> deck = new ArrayList<>();
+    HashMap<String, Integer> cardCounts = new HashMap<>();
 
-  /**
-   * Makes an InfluencePawnCard from the current position of the scanner.
-   *
-   * @param scanner The Scanner positioned at the card header.
-   * @return A fully constructed InfluencePawnCard.
-   */
-  protected static Card makeCard(Scanner scanner) {
-    String headerLine = null;
-    if (scanner.hasNextLine()) {
-      headerLine = scanner.nextLine().trim();
-    }
-    if (headerLine == null || headerLine.isEmpty()) {
-      return null;
-    }
-
-    String[] headerParts = headerLine.split("\\s+");
-    if (headerParts.length != 3) {
-      throw new IllegalArgumentException("Invalid Header");
-    }
-
-    String name = headerParts[0];
-    int cost = 0;
-    int value = 0;
-    try {
-      cost = Integer.parseInt(headerParts[1]);
-      value = Integer.parseInt(headerParts[2]);
-    } catch (NumberFormatException e) {
-      throw new IllegalArgumentException("Cost and value must be integers");
+    try (Scanner scanner = new Scanner(file)) {
+      while (scanner.hasNextLine()) {
+        Card card = makeCard(scanner); // this now refers to *this* class’s makeCard
+        if (card != null) {
+          String cardName = card.getName();
+          int count = cardCounts.getOrDefault(cardName, 0);
+          if (count >= 2) {
+            throw new IllegalArgumentException("Card " + cardName + " appears more than twice in the deck.");
+          }
+          cardCounts.put(cardName, count + 1);
+          deck.add(card);
+        }
+      }
+    } catch (FileNotFoundException e) {
+      throw new IllegalArgumentException("File not found");
     }
 
-    return new InfluencePawnCard(name, cost, value, makeInfluence(makeBoard(scanner)));
+    return deck;
   }
-  /**
-   * Overrides the default influence parsing to include U and D.
-   */
+
+  protected static Card makeCard(Scanner scanner) {
+    String headerLine = scanner.hasNextLine() ? scanner.nextLine().trim() : null;
+    if (headerLine == null || headerLine.isEmpty()) return null;
+
+    String[] parts = headerLine.split("\\s+");
+    if (parts.length != 3) throw new IllegalArgumentException("Invalid header line");
+
+    String name = parts[0];
+    int cost = Integer.parseInt(parts[1]);
+    int value = Integer.parseInt(parts[2]);
+    String[] grid = makeBoard(scanner);
+
+    return new InfluencePawnCard(name, cost, value, makeInfluence(grid));
+  }
+
   protected static Map<InfluencePosition, InfluenceType> makeInfluence(String[] grid) {
     Map<InfluencePosition, InfluenceType> map = new HashMap<>();
     for (int r = 0; r < 5; r++) {
@@ -56,23 +60,20 @@ public class EnhancedDeckReader extends DeckReader {
         char ch = grid[r].charAt(c);
         int x = c - 2;
         int y = 2 - r;
-
-        InfluenceType type = null;
         switch (ch) {
           case 'I':
-            type = InfluenceType.INFLUENCE;
+            map.put(new InfluencePosition(x, y), InfluenceType.INFLUENCE);
             break;
           case 'U':
-            type = InfluenceType.UPGRADE;
+            map.put(new InfluencePosition(x, y), InfluenceType.UPGRADE);
             break;
           case 'D':
-            type = InfluenceType.DEVALUE;
+            map.put(new InfluencePosition(x, y), InfluenceType.DEVALUE);
             break;
           default:
-           break;
+            // Don't add X or anything else
+            break;
         }
-
-        map.put(new InfluencePosition(x, y), type);
       }
     }
     return map;

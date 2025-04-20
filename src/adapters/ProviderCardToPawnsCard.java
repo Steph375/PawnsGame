@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
+import controller.InfluenceType;
 import model.Card;
 import model.InfluencePosition;
 import model.PawnCard;
@@ -68,13 +69,13 @@ public class ProviderCardToPawnsCard implements Card {
       int mirroredX = pos.getX() * -1;
       newInfluence[mirroredX + 2][(-1 * pos.getY()) - 2] = 1;
     }
-    HashMap<InfluencePosition, Boolean> influenceMap = new HashMap<>();
+    HashMap<InfluencePosition, InfluenceType> influenceMap = new HashMap<>();
     for (int row = 0; row < 5; row++) {
       for (int col = 0; col < 5; col++) {
         boolean hasInfluence = newInfluence[row][col] == 1;
         if (hasInfluence) {
           InfluencePosition ip = new InfluencePosition(row - 2, col - 2);
-          influenceMap.put(ip, true);
+          influenceMap.put(ip, InfluenceType.INFLUENCE);
         }
       }
     }
@@ -84,5 +85,15 @@ public class ProviderCardToPawnsCard implements Card {
   @Override
   public String getName() {
     return this.card.name;
+  }
+
+  @Override
+  public List<InfluencePosition> getUpgrades() {
+    return List.of();
+  }
+
+  @Override
+  public List<InfluencePosition> getDevalues() {
+    return List.of();
   }
 }
