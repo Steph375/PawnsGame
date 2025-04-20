@@ -30,4 +30,9 @@ public class EnhancedCell extends Cell {
     this.upgrade = 0;
     this.devalue = 0;
   }
+
+  public void clearCard() {
+    this.card = null;
+  }
+
 }

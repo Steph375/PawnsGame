@@ -70,9 +70,9 @@ public class EnhancedPawnsGame extends PawnsGameModel {
         int adjusted = Math.max(0, raw + bonus);
 
         if (adjusted == 0) {
-          // Instead of replacing the cell, just clear the card and reset modifiers
-          cell.placeCard(null, cell.getColor());
-          cell.resetModifiers();
+             cell.clearCard(); // or setCard(null)
+            cell.resetModifiers();
+
         } else if (cell.getColor() == PlayerColor.RED) {
           redScore += adjusted;
         } else if (cell.getColor() == PlayerColor.BLUE) {

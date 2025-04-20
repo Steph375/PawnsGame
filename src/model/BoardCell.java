@@ -58,4 +58,6 @@ public interface BoardCell {
   int getDevalue();
 
   void resetModifiers();
+
+  void clearCard();
 }

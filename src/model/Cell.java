@@ -5,7 +5,7 @@ package model;
  */
 public class Cell implements BoardCell {
   private int pawns;
-  private Card card;
+  protected Card card;
   private PlayerColor color;
 
   /**
@@ -138,5 +138,10 @@ public class Cell implements BoardCell {
   @Override
   public void resetModifiers() {
 
+  }
+
+  @Override
+  public void clearCard() {
+    this.card = null;
   }
 }
