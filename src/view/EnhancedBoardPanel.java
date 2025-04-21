@@ -5,6 +5,9 @@ import java.awt.*;
 import model.BoardCell;
 import model.PawnsGameReadOnly;
 
+/**
+ * Draws the enhanced board with the upgrades and devalues from the enhanced model.
+ */
 public class EnhancedBoardPanel extends BoardPanel {
   public EnhancedBoardPanel(PawnsGameReadOnly model, ColorScheme scheme) {
     super(model, scheme);

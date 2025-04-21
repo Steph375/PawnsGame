@@ -8,46 +8,16 @@ import model.PlayerColor;
 /**
  * Textual view for the PawnsBoard game that supports displaying influence modifiers.
  */
-public class EnhancedTextualView implements TextualView {
-  private final PawnsGame model;
+public class EnhancedTextualView extends PawnsTextualView {
 
+  /**
+   * Constructor to run textual viewfor the enhanced version.
+   * @param model takes an enhanced version of PawnsGame
+   */
   public EnhancedTextualView(PawnsGame model) {
-    this.model = model;
+    super(model);
   }
 
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    BoardCell[][] board = model.getBoard();
-    for (int i = 0; i < board.length; i++) {
-      if (i == board.length - 1) {
-        sb.append(renderRow(board[i]));
-      } else {
-        sb.append(renderRow(board[i])).append("\n");
-      }
-    }
-    return sb.toString();
-  }
-
-  private String renderRow(BoardCell[] row) {
-    int redRowScore = 0;
-    int blueRowScore = 0;
-    StringBuilder rowRepresentation = new StringBuilder();
-
-    for (BoardCell cell : row) {
-      rowRepresentation.append(getCellRepresentation(cell));
-
-      if (cell.getCard() != null) {
-        if (cell.getColor() == PlayerColor.RED) {
-          redRowScore += cell.getCard().getValueScore();
-        } else if (cell.getColor() == PlayerColor.BLUE) {
-          blueRowScore += cell.getCard().getValueScore();
-        }
-      }
-    }
-
-    return redRowScore + " " + rowRepresentation + " " + blueRowScore;
-  }
 
   private String getCellRepresentation(BoardCell cell) {
     if (cell.getCard() != null) {

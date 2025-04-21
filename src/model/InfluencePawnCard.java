@@ -6,8 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import controller.InfluenceType;
-
 /**
  * A subclass of PawnCard that exposes UPGRADE and DEVALUE influence information separately.
  */

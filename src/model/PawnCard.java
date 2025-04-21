@@ -8,9 +8,6 @@ import java.util.Objects;
 
 import java.util.Map;
 
-
-import controller.InfluenceType;
-
 /**
  * Represents a PawnGame Card that has a name, cost, value-score and influence. The card's influence
  * is represented as a hashmap of InfluencePosition to InfluenceType, tracking the surrounding cells

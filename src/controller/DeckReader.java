@@ -6,6 +6,7 @@ import java.util.*;
 
 import model.Card;
 import model.InfluencePosition;
+import model.InfluenceType;
 import model.PawnCard;
 
 /**

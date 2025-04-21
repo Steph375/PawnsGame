@@ -1,7 +1,5 @@
 package model;
 
-import controller.InfluenceType;
-import model.*;
 import org.junit.Before;
 import org.junit.Test;
 

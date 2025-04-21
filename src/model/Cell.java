@@ -117,12 +117,12 @@ public class Cell implements BoardCell {
 
   @Override
   public void applyUpgrade() {
-
+    //class doesnt handle upgrades
   }
 
   @Override
   public void applyDevalue() {
-
+     //class doesnt handle devalue
   }
 
   @Override
@@ -137,7 +137,7 @@ public class Cell implements BoardCell {
 
   @Override
   public void resetModifiers() {
-
+     // no modifiers to reset in this class
   }
 
   @Override

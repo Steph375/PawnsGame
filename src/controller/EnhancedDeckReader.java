@@ -11,16 +11,23 @@ import java.util.Scanner;
 import model.Card;
 import model.InfluencePawnCard;
 import model.InfluencePosition;
+import model.InfluenceType;
 
+/**
+ *  Enhanced version of the original deckreader class has the same functionality with the
+ *  exception that make influence now reads for devalue and upgrades as types of influence to
+ *  add to a hashmap of influence position to influence type. We also change that return
+ *  type in Deckreader.
+ */
 public class EnhancedDeckReader extends DeckReader {
-
+  
   public static List<Card> readDeck(File file) {
     List<Card> deck = new ArrayList<>();
     HashMap<String, Integer> cardCounts = new HashMap<>();
 
     try (Scanner scanner = new Scanner(file)) {
       while (scanner.hasNextLine()) {
-        Card card = makeCard(scanner); // this now refers to *this* class’s makeCard
+        Card card = makeCard(scanner);
         if (card != null) {
           String cardName = card.getName();
           int count = cardCounts.getOrDefault(cardName, 0);

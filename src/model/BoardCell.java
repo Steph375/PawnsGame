@@ -49,15 +49,35 @@ public interface BoardCell {
    */
   void removeAllPawns();
 
+  /**
+   * Adds the upgrade to the cell if the class uses upgrades.
+   */
   void applyUpgrade();
 
+  /**
+   * Adds the devalue to the cell if the class uses devalues.
+   */
   void applyDevalue();
 
+  /**
+   * produces te upgrade value field of the cell.
+   * @return int of upgrade value
+   */
   int getUpgrade();
 
+  /**
+   * produces te devalue value field of the cell.
+   * @return int of devalue value
+   */
   int getDevalue();
 
+  /**
+   * Sets all upgrade modifier fields to 0.
+   */
   void resetModifiers();
 
+  /**
+   * Removes card from  cell by making field null.
+   */
   void clearCard();
 }

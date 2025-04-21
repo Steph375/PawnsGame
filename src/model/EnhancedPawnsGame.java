@@ -1,9 +1,17 @@
 package model;
 
-import java.util.List;
-
+/**
+ * EnhancedPawnsGame is a modified model that works the same as the original pawns game
+ * with the exception of handling different typs of influence.
+ * To do this it uses a new cell and card class.
+ */
 public class EnhancedPawnsGame extends PawnsGameModel {
 
+  /**
+   * Same constructor as the original pawns game.
+   * @param rows number of rows in the game
+   * @param cols number
+   */
   public EnhancedPawnsGame(int rows, int cols) {
     super(rows, cols);
   }
@@ -70,8 +78,8 @@ public class EnhancedPawnsGame extends PawnsGameModel {
         int adjusted = Math.max(0, raw + bonus);
 
         if (adjusted == 0) {
-             cell.clearCard(); // or setCard(null)
-            cell.resetModifiers();
+          cell.clearCard(); // or setCard(null)
+          cell.resetModifiers();
 
         } else if (cell.getColor() == PlayerColor.RED) {
           redScore += adjusted;

@@ -8,6 +8,10 @@ import model.InfluencePosition;
 import model.PawnsGameReadOnly;
 import model.PlayerColor;
 
+/**
+ * HandPanel that works with multiple card influences has all the same functionality as
+ * the hand panel with the exception that a card may be null due to devalue
+ */
 public class EnhancedHandPanel extends HandPanel {
   public EnhancedHandPanel(PawnsGameReadOnly model, PlayerColor player) {
     super(model, player);
@@ -16,14 +20,22 @@ public class EnhancedHandPanel extends HandPanel {
   @Override
   protected void drawCard(Graphics2D g2d, Card card, Rectangle bounds, int index) {
     if (card == null) {
-      return; 
+      return;
     }
     super.drawCardText(g2d, card, bounds, index);
 
-    drawEnhancedInfluence(g2d, card.getInfluence(), card.getUpgrades(), card.getDevalues(),
+    this.drawEnhancedInfluence(g2d, card.getInfluence(), card.getUpgrades(), card.getDevalues(),
          bounds);
   }
 
+  /**
+   * Draws the new influence grid with upgrades as green and devalues as magenta
+   * @param g2d the current graphic
+   * @param influence all the positions of influence for a card
+   * @param upgrades all upgrade positions
+   * @param devalues all the positions to devalue
+   * @param cardRect the card dimensions
+   */
   private void drawEnhancedInfluence(Graphics2D g2d, List<InfluencePosition>
           influence, List<InfluencePosition> upgrades, List<InfluencePosition> devalues,
                                      Rectangle cardRect) {

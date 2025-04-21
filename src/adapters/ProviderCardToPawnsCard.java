@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
-import controller.InfluenceType;
+import model.InfluenceType;
 import model.Card;
 import model.InfluencePosition;
 import model.PawnCard;
