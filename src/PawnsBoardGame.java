@@ -44,7 +44,7 @@ public final class PawnsBoardGame {
 
     // Always use the enhanced model
     PawnsGame model = new EnhancedPawnsGame(5, 7);
-    model.setupGame(new ArrayList<>(redDeck), new ArrayList<>(blueDeck), 5, false);
+    model.setupGame(new ArrayList<>(redDeck), new ArrayList<>(blueDeck), 5, true);
 
     // Build human or AI players
     ActionPlayer redAPlayer = PlayerCreator.build(PlayerColor.RED, redType);

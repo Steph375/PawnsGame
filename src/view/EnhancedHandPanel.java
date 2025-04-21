@@ -15,6 +15,9 @@ public class EnhancedHandPanel extends HandPanel {
 
   @Override
   protected void drawCard(Graphics2D g2d, Card card, Rectangle bounds, int index) {
+    if (card == null) {
+      return; 
+    }
     super.drawCardText(g2d, card, bounds, index);
 
     drawEnhancedInfluence(g2d, card.getInfluence(), card.getUpgrades(), card.getDevalues(),
