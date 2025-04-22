@@ -19,6 +19,13 @@ public class PawnCard implements Card {
   private final int valueScore;
   protected final Map<InfluencePosition, InfluenceType> influence;
 
+  /**
+   * Constructor to create pawn card for Pawns game.
+   * @param name of the card
+   * @param cost cost to place card on game board.
+   * @param valueScore score given wen card placed.
+   * @param influence influence card has on the board.
+   */
   public PawnCard(String name, int cost, int valueScore,
                   Map<InfluencePosition, InfluenceType> influence) {
     if (cost < 1 || cost > 3) {
@@ -71,9 +78,12 @@ public class PawnCard implements Card {
 
   @Override
   public boolean equals(Object other) {
-    if (this == other) return true;
-    if (!(other instanceof PawnCard)) return false;
-    PawnCard that = (PawnCard) other;
+    if (this == other){
+      return true;
+    }
+    if (!(other instanceof PawnCard that)) {
+      return false;
+    }
     return this.cost == that.cost
             && this.valueScore == that.valueScore
             && this.name.equals(that.name)

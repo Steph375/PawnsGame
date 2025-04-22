@@ -20,7 +20,15 @@ import model.InfluenceType;
  *  type in Deckreader.
  */
 public class EnhancedDeckReader extends DeckReader {
-  
+  /**
+   * This method creates a deck of cards from the given text file.
+   *
+   * @param file the text file to create a deck of Cards from
+   * @return the deck of Cards comprised of the cards in the text file
+   * @throws IllegalArgumentException if the given file is not found,
+   *                                  if the file has a given card more
+   *                                  than two times, or the file is not correctly formatted.
+   */
   public static List<Card> readDeck(File file) {
     List<Card> deck = new ArrayList<>();
     HashMap<String, Integer> cardCounts = new HashMap<>();
@@ -32,7 +40,8 @@ public class EnhancedDeckReader extends DeckReader {
           String cardName = card.getName();
           int count = cardCounts.getOrDefault(cardName, 0);
           if (count >= 2) {
-            throw new IllegalArgumentException("Card " + cardName + " appears more than twice in the deck.");
+            throw new IllegalArgumentException("Card " + cardName +
+                    " appears more than twice in the deck.");
           }
           cardCounts.put(cardName, count + 1);
           deck.add(card);
@@ -47,10 +56,14 @@ public class EnhancedDeckReader extends DeckReader {
 
   protected static Card makeCard(Scanner scanner) {
     String headerLine = scanner.hasNextLine() ? scanner.nextLine().trim() : null;
-    if (headerLine == null || headerLine.isEmpty()) return null;
+    if (headerLine == null || headerLine.isEmpty()){
+      return null;
+    }
 
     String[] parts = headerLine.split("\\s+");
-    if (parts.length != 3) throw new IllegalArgumentException("Invalid header line");
+    if (parts.length != 3){
+      throw new IllegalArgumentException("Invalid header line");
+    }
 
     String name = parts[0];
     int cost = Integer.parseInt(parts[1]);

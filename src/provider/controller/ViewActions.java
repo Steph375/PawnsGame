@@ -25,7 +25,7 @@ public interface ViewActions {
   void gameOver();
 
   /**
-   * Selects a card in hand
+   * Selects a card in hand.
    * @param id index of the card in hand.
    */
   void setSelectedCard(int id);

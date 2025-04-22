@@ -239,11 +239,11 @@ public class PawnsGameModel implements PawnsGame {
 
     this.passes++;
 
-    if(this.getCurrentPlayer() == PlayerColor.RED){
-      if(this.playerRed.getHand().size() < 7) {
+    if (this.getCurrentPlayer() == PlayerColor.RED) {
+      if (this.playerRed.getHand().size() < 7) {
         this.playerRed.drawCard();
       }
-    } else if(this.playerBlue.getHand().size() < 7) {
+    } else if (this.playerBlue.getHand().size() < 7) {
       this.playerBlue.drawCard();
     }
 

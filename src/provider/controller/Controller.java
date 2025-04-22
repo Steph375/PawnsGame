@@ -3,6 +3,9 @@ package provider.controller;
 import provider.model.Move;
 import provider.model.PlayerTeam;
 
+/**
+ * Provider didnt provide java doc here.
+ */
 public interface Controller {
   /**
    * method for playing the game.

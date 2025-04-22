@@ -1,7 +1,9 @@
 package provider.model;
 
 
-
+/**
+ * Provider didn't write java doc here.
+ */
 public interface PlayingCard {
 
   /**

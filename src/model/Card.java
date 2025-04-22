@@ -58,13 +58,13 @@ public interface Card {
   int hashCode();
 
   /**
-   * Creates a list of all upgrade positions on the board the card impacts
+   * Creates a list of all upgrade positions on the board the card impacts.
    * @return returns a list of those positions
    */
   List<InfluencePosition> getUpgrades();
 
   /**
-   * Creates a list of all devalue positions on the board the card impacts
+   * Creates a list of all devalue positions on the board the card impacts.
    * @return returns a list of those positions
    */
   List<InfluencePosition> getDevalues();

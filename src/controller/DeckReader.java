@@ -2,7 +2,11 @@ package controller;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 
 import model.Card;
 import model.InfluencePosition;
@@ -49,12 +53,18 @@ public class DeckReader {
   }
 
   private static PawnCard makeCard(Scanner scanner) {
-    if (!scanner.hasNextLine()) return null;
+    if (!scanner.hasNextLine()){
+      return null;
+    }
     String headerLine = scanner.nextLine().trim();
-    if (headerLine.isEmpty()) return null;
+    if (headerLine.isEmpty()) {
+      return null;
+    }
 
     String[] headerParts = headerLine.split("\\s");
-    if (headerParts.length != 3) throw new IllegalArgumentException("Invalid Header");
+    if (headerParts.length != 3) {
+      throw new IllegalArgumentException("Invalid Header");
+    }
 
     String name = headerParts[0];
     int cost = Integer.parseInt(headerParts[1]);
@@ -80,7 +90,8 @@ public class DeckReader {
 
   protected static Map<InfluencePosition, InfluenceType> makeInfluence(String[] grid) {
     Map<InfluencePosition, InfluenceType> map = new HashMap<>();
-    int centerRow = 2, centerCol = 2;
+    int centerRow = 2;
+    int centerCol = 2;
     for (int row = 0; row < 5; row++) {
       for (int col = 0; col < 5; col++) {
         char ch = grid[row].charAt(col);

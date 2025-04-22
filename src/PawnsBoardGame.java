@@ -23,7 +23,9 @@ import java.util.List;
  */
 public final class PawnsBoardGame {
   /**
-   * Main method to instantiate the enhanced model, controllers, and views for the specified players.
+   * Main method to instantiate the enhanced model, controllers,
+   * and views for the specified players.
+   *
    * @param args Command line input. Should be in the form [redDeckPath] [blueDeckPath]
    *             [redPlayerType] [bluePlayerType].
    */
@@ -51,12 +53,13 @@ public final class PawnsBoardGame {
     ActionPlayer blueAPlayer = PlayerCreator.build(PlayerColor.BLUE, blueType);
 
     // Use enhanced views and normal color scheme
-    PawnsView redView = new EnhancedPawnsFrame(model, PlayerColor.RED,  new DefaultColor());
+    PawnsView redView = new EnhancedPawnsFrame(model, PlayerColor.RED, new DefaultColor());
     PawnsView blueView = new EnhancedPawnsFrame(model, PlayerColor.BLUE, new HighContrast());
 
     // Connect controllers
     PawnsController redController = new GameController(model, PlayerColor.RED, redAPlayer, redView);
-    PawnsController blueController = new GameController(model, PlayerColor.BLUE, blueAPlayer, blueView);
+    PawnsController blueController = new GameController(model,
+            PlayerColor.BLUE, blueAPlayer, blueView);
 
     redController.playGame(model);
     blueController.playGame(model);

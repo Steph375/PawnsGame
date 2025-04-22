@@ -15,6 +15,10 @@ import view.TextualView;
  * Plays out a full enhanced game using influence cards.
  */
 public class EnhancedTextMain {
+  /**
+   * Main method for enhanced text game.
+   * @param args imputs for the game
+   */
   public static void main(String[] args) {
     String path = "docs" + File.separator + "enhanced.config";
     File configFile = new File(path);

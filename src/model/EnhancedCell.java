@@ -2,7 +2,7 @@ package model;
 
 /**
  * Enhanced cell has the same functionality as the Cell class but also keeps
- * track of the upgrade and devalue points
+ * track of the upgrade and devalue points.
  */
 public class EnhancedCell extends Cell {
   // the number of upgrade effects applied to this cell

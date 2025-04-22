@@ -32,12 +32,12 @@ public class ActionsAdapter implements provider.controller.ViewActions {
 
   @Override
   public void gameOver() {
-
+   //our view actions doesnt handle game over in this way
   }
 
   @Override
   public void setSelectedCard(int id) {
-
+   //our view actions doesnt handle setSel
   }
 
 }
