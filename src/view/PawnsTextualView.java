@@ -53,7 +53,7 @@ public class PawnsTextualView implements TextualView {
     StringBuilder rowRepresentation = new StringBuilder();
 
     for (BoardCell cell : row) {
-      rowRepresentation.append(getCellRepresentation(cell));
+      rowRepresentation.append(this.getCellRepresentation(cell));
 
       if (cell.getCard() != null) {
         if (cell.getColor() == PlayerColor.RED) {
@@ -74,7 +74,7 @@ public class PawnsTextualView implements TextualView {
    * @return "R" if the cell is red, "B" if blue,
    *         the number of pawns if present, or "_" if empty.
    */
-  private String getCellRepresentation(BoardCell cell) {
+  protected String getCellRepresentation(BoardCell cell) {
     if (cell.getCard() != null) {
       if (cell.getColor() == PlayerColor.RED) {
         return "R";

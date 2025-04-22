@@ -4,6 +4,9 @@ import java.awt.Color;
 
 import model.PlayerColor;
 
+/**
+ * Object represents the default color scheme for elements of the board panel.
+ */
 public class DefaultColor implements ColorScheme {
 
   @Override

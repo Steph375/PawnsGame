@@ -1,6 +1,8 @@
 package view;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.util.List;
 
 import model.Card;
@@ -10,7 +12,7 @@ import model.PlayerColor;
 
 /**
  * HandPanel that works with multiple card influences has all the same functionality as
- * the hand panel with the exception that a card may be null due to devalue
+ * the hand panel with the exception that a card may be null due to devalue.
  */
 public class EnhancedHandPanel extends HandPanel {
   public EnhancedHandPanel(PawnsGameReadOnly model, PlayerColor player) {
@@ -29,7 +31,7 @@ public class EnhancedHandPanel extends HandPanel {
   }
 
   /**
-   * Draws the new influence grid with upgrades as green and devalues as magenta
+   * Draws the new influence grid with upgrades as green and devalues as magenta.
    * @param g2d the current graphic
    * @param influence all the positions of influence for a card
    * @param upgrades all upgrade positions

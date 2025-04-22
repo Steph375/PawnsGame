@@ -190,7 +190,7 @@ public class HandPanel extends JPanel implements IHandPanel {
   }
 
   /**
-   * Draws the text of the card (everything except the influence grid)
+   * Draws the text of the card (everything except the influence grid).
    * @param g2d graphics object for drawing.
    * @param card the card to be drawn.
    * @param bounds a rectangle object representing the size of the card.

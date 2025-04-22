@@ -142,6 +142,7 @@ public class Cell implements BoardCell {
 
   @Override
   public void clearCard() {
+    this.pawns = this.card.getCost();
     this.card = null;
   }
 }

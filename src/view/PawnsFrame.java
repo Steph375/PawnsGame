@@ -17,7 +17,7 @@ import model.PlayerColor;
 public class PawnsFrame extends JFrame implements PawnsView {
   protected BoardPanel boardPanel;
   protected HandPanel handPanel;
-  private final ColorScheme scheme;
+
 
   /**
    * Creates a window of the PawnsBoard GUI.
@@ -35,7 +35,6 @@ public class PawnsFrame extends JFrame implements PawnsView {
     this.setTitle("Player: " + player);
 
     setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
-    this.scheme = scheme;
     // create board and hand panels
     this.boardPanel = new BoardPanel(model, scheme);
     this.handPanel = new HandPanel(model, player);

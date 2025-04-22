@@ -18,10 +18,10 @@ public class EnhancedTextualView extends PawnsTextualView {
     super(model);
   }
 
-
-  private String getCellRepresentation(BoardCell cell) {
+  @Override
+  protected String getCellRepresentation(BoardCell cell) {
     if (cell.getCard() != null) {
-      int modified = cell.getCard().getValueScore();
+      int modified = 0;
 
       // Add upgrade/devalue values if the board cell has those
       if (cell.getUpgrade() > 0) {
@@ -31,14 +31,14 @@ public class EnhancedTextualView extends PawnsTextualView {
         modified -= cell.getDevalue();
       }
 
-      if (modified <= 0) {
-        return "0"; // Card should have been removed by model logic
+      if (cell.getCard().getValueScore() - cell.getDevalue() + cell.getUpgrade() < 0) {
+        return "_ "; // Card should have been removed by model logic
       }
 
       if (cell.getColor() == PlayerColor.RED) {
-        return "R+" + modified;
+        return "R+" + modified + " ";
       } else {
-        return "B+" + modified;
+        return "B+" + modified + " ";
       }
     } else {
       int pawns = cell.getPawns();
@@ -49,9 +49,9 @@ public class EnhancedTextualView extends PawnsTextualView {
         } else if (cell.getDevalue() > 0) {
           mod += "-" + cell.getDevalue();
         }
-        return pawns + mod;
+        return pawns +  mod + " ";
       } else {
-        return "_";
+        return "_ ";
       }
     }
   }

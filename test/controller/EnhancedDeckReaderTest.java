@@ -9,9 +9,11 @@ import java.util.List;
 
 
 import model.Card;
-import model.InfluencePawnCard;
 import model.InfluencePosition;
 
+/**
+ * Tests to ensure proper function of enhanced deck reader
+ */
 public class EnhancedDeckReaderTest {
 
   List<Card> enhancedDeck;
