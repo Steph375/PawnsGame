@@ -8,6 +8,7 @@ import model.Card;
 import model.EnhancedPawnsGame;
 import model.PawnsGame;
 import model.PlayerColor;
+import view.EnhancedTextualView;
 import view.PawnsTextualView;
 import view.TextualView;
 
@@ -29,7 +30,7 @@ public class EnhancedTextMain {
     PawnsGame model = new EnhancedPawnsGame(3, 5);
     model.setupGame(new ArrayList<>(deck), new ArrayList<>(deck), 5, false);
 
-    TextualView view = new PawnsTextualView(model);
+    TextualView view = new EnhancedTextualView(model);
 
     while (!model.isGameOver()) {
       System.out.println(view);

@@ -11,7 +11,7 @@ import model.PlayerColor;
 public class EnhancedTextualView extends PawnsTextualView {
 
   /**
-   * Constructor to run textual viewfor the enhanced version.
+   * Constructor to run textual view for the enhanced version.
    * @param model takes an enhanced version of PawnsGame
    */
   public EnhancedTextualView(PawnsGame model) {

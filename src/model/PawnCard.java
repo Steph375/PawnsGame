@@ -81,13 +81,14 @@ public class PawnCard implements Card {
     if (this == other){
       return true;
     }
-    if (!(other instanceof PawnCard that)) {
+    if (!(other instanceof PawnCard)) {
       return false;
+    } else {
+      return this.cost == ((PawnCard) other).cost
+              && this.valueScore == ((PawnCard) other).valueScore
+              && this.name.equals(((PawnCard) other).name)
+              && this.influence.equals(((PawnCard) other).influence);
     }
-    return this.cost == that.cost
-            && this.valueScore == that.valueScore
-            && this.name.equals(that.name)
-            && this.influence.equals(that.influence);
   }
 
   @Override

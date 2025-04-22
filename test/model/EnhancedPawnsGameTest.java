@@ -41,8 +41,9 @@ public class EnhancedPawnsGameTest {
 
     BoardCell[][] board = model.getBoard();
 
-    // The RED card at (1,0) places pawns at (0,0)
-    assertEquals(1, board[0][0].getPawns());
+    // The RED card at (1,0) places an additional pawn at (0,0)
+    // there is already one pawn placed in this cell based on the start board configuration
+    assertEquals(2, board[0][0].getPawns());
 
     // The RED card at (1,0) applies upgrade to (1,1)
     assertEquals(1, board[1][1].getUpgrade());
@@ -52,8 +53,9 @@ public class EnhancedPawnsGameTest {
     // The BLUE card at (1,4) applies upgrade to (1,3)
     assertEquals(1, board[1][3].getUpgrade());
 
-    // The BLUE card at (1,4) adds pawn to (0,4)
-    assertEquals(1, board[0][4].getPawns());
+    // The BLUE card at (1,4) adds an additional pawn to (0,4)
+    // there is already a pawn in this cell based on the starting board configuration
+    assertEquals(2, board[0][4].getPawns());
   }
 
   @Test
