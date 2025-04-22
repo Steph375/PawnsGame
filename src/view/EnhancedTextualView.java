@@ -41,18 +41,31 @@ public class EnhancedTextualView extends PawnsTextualView {
         return "B+" + modified + " ";
       }
     } else {
-      int pawns = cell.getPawns();
-      if (pawns > 0) {
-        String mod = "";
-        if (cell.getUpgrade() > 0) {
-          mod += "+" + cell.getUpgrade();
-        } else if (cell.getDevalue() > 0) {
-          mod += "-" + cell.getDevalue();
-        }
-        return pawns +  mod + " ";
-      } else {
-        return "_ ";
+      return cellRepresentationHelper(cell);
       }
+    }
+
+  private String cellRepresentationHelper(BoardCell cell) {
+    int pawns = cell.getPawns();
+    int adjustment = cell.getUpgrade() - cell.getDevalue();
+
+    if (pawns > 0 && adjustment > 0) {
+      return pawns + "+" + adjustment + " ";
+    }
+    else if (pawns > 0 && adjustment < 0) {
+      return pawns + adjustment + " ";
+    }
+    else if(pawns > 0 && adjustment == 0) {
+      return pawns + " ";
+    }
+    else if (pawns == 0 && adjustment > 0) {
+      return "+" + adjustment + " ";
+    }
+    else if (pawns == 0 && adjustment < 0) {
+      return adjustment + " ";
+    }
+    else {
+      return "_ ";
     }
   }
 }
