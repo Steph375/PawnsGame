@@ -12,6 +12,7 @@ public class EnhancedTextualView extends PawnsTextualView {
 
   /**
    * Constructor to run textual view for the enhanced version.
+   *
    * @param model takes an enhanced version of PawnsGame
    */
   public EnhancedTextualView(PawnsGame model) {
@@ -20,53 +21,42 @@ public class EnhancedTextualView extends PawnsTextualView {
 
   @Override
   protected String getCellRepresentation(BoardCell cell) {
-    if (cell.getCard() != null) {
-      int modified = 0;
-
-      // Add upgrade/devalue values if the board cell has those
-      if (cell.getUpgrade() > 0) {
-        modified += cell.getUpgrade();
-      }
-      if (cell.getDevalue() > 0) {
-        modified -= cell.getDevalue();
-      }
-
-      if (cell.getCard().getValueScore() - cell.getDevalue() + cell.getUpgrade() < 0) {
-        return "_ "; // Card should have been removed by model logic
-      }
-
-      if (cell.getColor() == PlayerColor.RED) {
-        return "R+" + modified + " ";
-      } else {
-        return "B+" + modified + " ";
-      }
-    } else {
-      return cellRepresentationHelper(cell);
-      }
-    }
-
-  private String cellRepresentationHelper(BoardCell cell) {
     int pawns = cell.getPawns();
-    int adjustment = cell.getUpgrade() - cell.getDevalue();
+    int upgrade = cell.getUpgrade();
+    int devalue = cell.getDevalue();
+    int modifier = upgrade - devalue;
 
-    if (pawns > 0 && adjustment > 0) {
-      return pawns + "+" + adjustment + " ";
+    if (cell.getCard() != null) {
+      int base = cell.getCard().getValueScore();
+      int adjusted = base + modifier;
+
+      // If card was removed due to 0 score, show "_"
+      if (adjusted <= 0) {
+        return "_ ";
+      }
+
+      String colorPrefix = cell.getColor() == PlayerColor.RED ? "R" : "B";
+      String mod = modifier >= 0 ? "+" + modifier : String.valueOf(modifier);
+      return colorPrefix + mod + " ";
     }
-    else if (pawns > 0 && adjustment < 0) {
-      return pawns + adjustment + " ";
+
+    // If pawns exist, show them and modifier if any
+    if (pawns > 0) {
+      if (modifier != 0) {
+        return pawns + (modifier > 0 ? "+" + modifier : String.valueOf(modifier)) + " ";
+      } else {
+        return pawns + " ";
+      }
     }
-    else if(pawns > 0 && adjustment == 0) {
-      return pawns + " ";
+
+
+    if (modifier > 0) {
+      return "+" + modifier + " ";
+    } else if (modifier < 0) {
+      return modifier + " ";
     }
-    else if (pawns == 0 && adjustment > 0) {
-      return "+" + adjustment + " ";
-    }
-    else if (pawns == 0 && adjustment < 0) {
-      return adjustment + " ";
-    }
-    else {
-      return "_ ";
-    }
+
+    return "_ ";
   }
 }
 

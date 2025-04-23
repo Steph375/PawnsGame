@@ -1,12 +1,26 @@
-package model;
-
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import static org.junit.Assert.*;
+import model.BoardCell;
+import model.Card;
+import model.EnhancedPawnsGame;
+import model.InfluencePawnCard;
+import model.InfluencePosition;
+import model.InfluenceType;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
+/**
+ * Class to test the behavior of the new enhanced model.
+ */
 public class EnhancedPawnsGameTest {
 
   EnhancedPawnsGame model;
@@ -61,7 +75,7 @@ public class EnhancedPawnsGameTest {
   @Test
   public void testCardRemovedWhenAdjustedValueIsZero() {
     Map<InfluencePosition, InfluenceType> onlyDevalue = new HashMap<>();
-    onlyDevalue.put(new InfluencePosition(0, 1), InfluenceType.DEVALUE); // reduce card value
+    onlyDevalue.put(new InfluencePosition(0, 1), InfluenceType.DEVALUE); // devalues above
 
     InfluencePawnCard weakCard = new InfluencePawnCard("Zero", 1, 1, onlyDevalue);
     List<Card> deck = new ArrayList<>(Collections.nCopies(20, weakCard));
@@ -69,21 +83,26 @@ public class EnhancedPawnsGameTest {
     EnhancedPawnsGame game = new EnhancedPawnsGame(3, 5);
     game.setupGame(new ArrayList<>(deck), new ArrayList<>(deck), 5, false);
 
-    game.placeCard(1, 0, game.getCurrentPlayerHand().get(0)); // RED
-    game.placeCard(1, 4, game.getCurrentPlayerHand().get(0)); // BLUE
-    game.placeCard(0, 0, game.getCurrentPlayerHand().get(0)); // RED
-    game.placeCard(0, 4, game.getCurrentPlayerHand().get(0)); // BLUE
+    // RED devalues (1,0)
+    game.placeCard(2, 0, game.getCurrentPlayerHand().get(0)); // devalue hits 1,0
+    game.placeCard(2, 4, game.getCurrentPlayerHand().get(0)); // BLUE
+    // RED plays card with value 1 at (1,0) → adjusted score = 0
+    game.placeCard(1, 0, game.getCurrentPlayerHand().get(0));
+    game.placeCard(1, 4, game.getCurrentPlayerHand().get(0));
+
+
+    game.getRowScores(1);
 
     BoardCell[][] board = game.getBoard();
 
-    // Since adjusted score = 1 - 1 = 0, the card should be removed
-   // assertNull(board[0][0].getCard()); // check that the
-    //assertNull(board[0][4].getCard());
+    assertNull(board[1][0].getCard());
+    assertNull(board[1][4].getCard());
 
-    // But modifiers should also reset
     assertEquals(0, board[1][0].getDevalue());
     assertEquals(0, board[1][4].getDevalue());
   }
+
+
 
   @Test
   public void testScoreCalculationWithModifiers() {

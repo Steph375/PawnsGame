@@ -1,13 +1,19 @@
-package model;
-
-
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import static org.junit.Assert.*;
+import model.Card;
+import model.InfluencePawnCard;
+import model.InfluencePosition;
+import model.InfluenceType;
 
+/**
+ * Class to test the behavior of the enhanced pawn card.
+ */
 public class InfluencePawnCardTest {
 
   private InfluencePosition pos1;
@@ -33,37 +39,37 @@ public class InfluencePawnCardTest {
   @Test
   public void testGetInfluenceOnlyReturnsInfluenceType() {
     List<InfluencePosition> influence = testCard.getInfluence();
-    assertEquals(1, influence.size());
-    assertTrue(influence.contains(pos1));
+    Assert.assertEquals(1, influence.size());
+    Assert.assertTrue(influence.contains(pos1));
   }
 
   @Test
   public void testGetUpgradesOnlyReturnsUpgradeType() {
     List<InfluencePosition> upgrades = testCard.getUpgrades();
-    assertEquals(1, upgrades.size());
-    assertTrue(upgrades.contains(pos2));
+    Assert.assertEquals(1, upgrades.size());
+    Assert.assertTrue(upgrades.contains(pos2));
   }
 
   @Test
   public void testGetDevaluesOnlyReturnsDevalueType() {
     List<InfluencePosition> devalues = testCard.getDevalues();
-    assertEquals(1, devalues.size());
-    assertTrue(devalues.contains(pos3));
+    Assert.assertEquals(1, devalues.size());
+    Assert.assertTrue(devalues.contains(pos3));
   }
 
   @Test
   public void testMirrorInfluence() {
     Card mirrored = testCard.mirrorInfluence();
-    assertTrue(mirrored instanceof InfluencePawnCard);
+    Assert.assertTrue(mirrored instanceof InfluencePawnCard);
 
     List<InfluencePosition> mirroredInfluence = mirrored.getInfluence();
-    assertTrue(mirroredInfluence.contains(new InfluencePosition(-1, 0)));
+    Assert.assertTrue(mirroredInfluence.contains(new InfluencePosition(-1, 0)));
 
     List<InfluencePosition> mirroredUpgrades = mirrored.getUpgrades();
-    assertTrue(mirroredUpgrades.contains(new InfluencePosition(0, -1)));
+    Assert.assertTrue(mirroredUpgrades.contains(new InfluencePosition(0, -1)));
 
     List<InfluencePosition> mirroredDevalues = mirrored.getDevalues();
-    assertTrue(mirroredDevalues.contains(new InfluencePosition(1, 1)));
+    Assert.assertTrue(mirroredDevalues.contains(new InfluencePosition(1, 1)));
   }
 
   @Test
@@ -73,11 +79,11 @@ public class InfluencePawnCardTest {
     InfluencePawnCard differentCost = new InfluencePawnCard("Flame", 1, 4, mixedInfluence);
     InfluencePawnCard differentValue = new InfluencePawnCard("Flame", 2, 3, mixedInfluence);
 
-    assertEquals(testCard, same);
-    assertNotEquals(testCard, differentName);
-    assertNotEquals(testCard, differentCost);
-    assertNotEquals(testCard, differentValue);
+    Assert.assertEquals(testCard, same);
+    Assert.assertNotEquals(testCard, differentName);
+    Assert.assertNotEquals(testCard, differentCost);
+    Assert.assertNotEquals(testCard, differentValue);
 
-    assertEquals(testCard.hashCode(), same.hashCode());
+    Assert.assertEquals(testCard.hashCode(), same.hashCode());
   }
 }

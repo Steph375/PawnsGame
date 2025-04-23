@@ -56,12 +56,12 @@ public class EnhancedDeckReader extends DeckReader {
 
   protected static Card makeCard(Scanner scanner) {
     String headerLine = scanner.hasNextLine() ? scanner.nextLine().trim() : null;
-    if (headerLine == null || headerLine.isEmpty()){
+    if (headerLine == null || headerLine.isEmpty()) {
       return null;
     }
 
     String[] parts = headerLine.split("\\s+");
-    if (parts.length != 3){
+    if (parts.length != 3) {
       throw new IllegalArgumentException("Invalid header line");
     }
 

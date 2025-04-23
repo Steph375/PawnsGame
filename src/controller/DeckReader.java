@@ -53,7 +53,7 @@ public class DeckReader {
   }
 
   private static PawnCard makeCard(Scanner scanner) {
-    if (!scanner.hasNextLine()){
+    if (!scanner.hasNextLine()) {
       return null;
     }
     String headerLine = scanner.nextLine().trim();

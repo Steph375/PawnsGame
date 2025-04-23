@@ -1,5 +1,3 @@
-package controller;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,11 +6,12 @@ import java.io.File;
 import java.util.List;
 
 
+import controller.EnhancedDeckReader;
 import model.Card;
 import model.InfluencePosition;
 
 /**
- * Tests to ensure proper function of enhanced deck reader
+ * Tests to ensure proper function of enhanced deck reader.
  */
 public class EnhancedDeckReaderTest {
 

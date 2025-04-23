@@ -77,7 +77,8 @@ public interface BoardCell {
   void resetModifiers();
 
   /**
-   * Removes card from  cell by making field null.
+   * Removes card from  cell by making field null. And pust the cost of the sell
+   * as the number of pawns in the cell.
    */
   void clearCard();
 }

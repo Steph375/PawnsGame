@@ -9,7 +9,6 @@ import model.EnhancedPawnsGame;
 import model.PawnsGame;
 import model.PlayerColor;
 import view.EnhancedTextualView;
-import view.PawnsTextualView;
 import view.TextualView;
 
 /**
@@ -18,22 +17,45 @@ import view.TextualView;
 public class EnhancedTextMain {
   /**
    * Main method for enhanced text game.
-   * @param args imputs for the game
+   * @param args inputs for the game
    */
   public static void main(String[] args) {
     String path = "docs" + File.separator + "enhanced.config";
     File configFile = new File(path);
 
-    // Read enhanced deck with U/D influences.
-    List<Card> deck = EnhancedDeckReader.readDeck(configFile);
+    List<Card> fullDeck = EnhancedDeckReader.readDeck(configFile);
+    List<Card> redDeck = new ArrayList<>(fullDeck);
+    List<Card> blueDeck = new ArrayList<>(fullDeck);
 
     PawnsGame model = new EnhancedPawnsGame(3, 5);
-    model.setupGame(new ArrayList<>(deck), new ArrayList<>(deck), 5, false);
+    model.setupGame(redDeck, blueDeck, 5, false);
 
     TextualView view = new EnhancedTextualView(model);
 
+    // moves to demonstrate card removal and canceling upgrade/devalue effects
+    model.placeCard(0, 0, model.getCurrentPlayerHand().get(0)); // RED
+    model.drawCard();
+    System.out.println(view + "\n");
+
+    model.placeCard(0, 4, model.getCurrentPlayerHand().get(0)); // BLUE (to be removed)
+    model.drawCard();
+    System.out.println(view + "\n");
+
+    model.placeCard(0, 1, model.getCurrentPlayerHand().get(0)); // RED
+    model.drawCard();
+    System.out.println(view + "\n");
+
+    model.placeCard(1, 4, model.getCurrentPlayerHand().get(0)); // BLUE devalues top-right
+    model.drawCard();
+    System.out.println(view + "\n");
+
+    model.placeCard(1, 2, model.getCurrentPlayerHand().get(0)); // RED cancels with upgrade
+    model.drawCard();
+    System.out.println(view + "\n");
+
+    // loop through remaining moves
     while (!model.isGameOver()) {
-      System.out.println(view);
+      System.out.println(view + "\n");
 
       boolean moveMade = false;
       List<Card> hand = model.getCurrentPlayerHand();
@@ -60,6 +82,6 @@ public class EnhancedTextMain {
 
     System.out.println(view);
     PlayerColor winner = model.determineWinner();
-    System.out.println("Game Over! " + (winner == null ? "Tie!" : "Winner: " + winner));
+    System.out.println("\nGame Over! " + (winner == null ? "Tie!" : "Winner: " + winner));
   }
 }

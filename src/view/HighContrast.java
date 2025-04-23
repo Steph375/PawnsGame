@@ -5,7 +5,7 @@ import java.awt.Color;
 import model.PlayerColor;
 
 /**
- * Object represents a high contrast color scheme for the board elements in the board panel
+ * Object represents a high contrast color scheme for the board elements in the board panel.
  */
 public class HighContrast implements ColorScheme {
 
